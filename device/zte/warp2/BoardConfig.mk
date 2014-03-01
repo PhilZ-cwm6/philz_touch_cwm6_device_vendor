@@ -117,9 +117,9 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01500000
 TARGET_ARCH := arm
 
-TARGET_KERNEL_CONFIG := warp2_defconfig
-TARGET_KERNEL_SOURCE := kernel/zte/warp2
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
+#TARGET_KERNEL_CONFIG := warp2_defconfig
+#TARGET_KERNEL_SOURCE := kernel/zte/warp2
+#TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
 
 # Partition Sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
@@ -136,7 +136,7 @@ BOARD_USES_MMCUTILS := true
 BOARD_HAS_SDCARD_INTERNAL := true
 
 # recovery
-TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/warp2/recovery/kernel
+TARGET_PREBUILT_KERNEL := device/zte/warp2/recovery/kernel
 TARGET_RECOVERY_INITRC := device/zte/warp2/recovery/recovery.rc
 BOARD_CUSTOM_GRAPHICS := ../../../device/zte/warp2/recovery/graphics.c
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"font_7x16.h\"

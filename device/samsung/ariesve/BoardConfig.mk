@@ -55,7 +55,7 @@ TARGET_SCREEN_WIDTH := 480
 # Kernel stuff
 BOARD_KERNEL_BASE := 0x00400000
 BOARD_KERNEL_PAGESIZE := 4096
-TARGET_KERNEL_SOURCE := kernel/samsung/msm7x30/
+#TARGET_KERNEL_SOURCE := kernel/samsung/msm7x30/
 TARGET_KERNEL_CONFIG := ariesve_defconfig
 
 # WiFi
@@ -163,7 +163,8 @@ BOARD_VOLD_MAX_PARTITIONS := 28
 # Custom recovery files
 TARGET_RECOVERY_INITRC := device/samsung/ariesve/recovery/init.recovery.rc
 TARGET_RECOVERY_FSTAB := device/samsung/ariesve/ramdisk/fstab.qcom
-TARGET_PREBUILT_RECOVERY_KERNEL := device/samsung/ariesve/recovery/zImage
+#TARGET_PREBUILT_RECOVERY_KERNEL := device/samsung/ariesve/recovery/zImage
+TARGET_PREBUILT_KERNEL := device/samsung/ariesve/recovery/zImage
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/ariesve/recovery/recovery_keys.c
 
 # TWRP recovery stuff

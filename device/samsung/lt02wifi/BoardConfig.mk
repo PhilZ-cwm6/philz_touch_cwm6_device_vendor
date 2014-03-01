@@ -79,7 +79,7 @@ BOARD_HAS_NO_MISC_PARTITION := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGB_565"
 TARGET_RECOVERY_FSTAB := device/samsung/lt02wifi/rootdir/fstab.pxa988
 RECOVERY_FSTAB_VERSION := 2
-TARGET_RECOVERY_INITRC := device/samsung/lt02wifi/recovery/root/init.recovery.rc
+#TARGET_RECOVERY_INITRC := device/samsung/lt02wifi/recovery/root/init.recovery.rc
 BOARD_RECOVERY_SWIPE := true
 
 # Init

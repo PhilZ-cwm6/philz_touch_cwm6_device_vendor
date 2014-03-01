@@ -51,10 +51,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.n1.usb.rc:root/init.n1.usb.rc \
     $(LOCAL_PATH)/ueventd.n1.rc:root/ueventd.n1.rc
 
-# TWRP
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
-
 # Vold and Storage
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/fstab.n1:root/fstab.n1

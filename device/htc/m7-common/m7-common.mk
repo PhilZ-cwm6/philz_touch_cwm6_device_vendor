@@ -49,6 +49,9 @@ PRODUCT_PACKAGES += \
     battery_fail.png \
     battery_full.png
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/extra.fstab:recovery/root/etc/extra.fstab
+
 # QC thermald config
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
 

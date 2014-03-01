@@ -11,4 +11,5 @@
 /dev/block/platform/msm_sdcc.1/by-name/recovery     /recovery       emmc    defaults                                                                     defaults
 /dev/block/platform/msm_sdcc.1/by-name/misc         /misc           emmc    defaults                                                                     defaults
 
+# not used in recovery, it uses its own recovery.fstab as defined in BoardConfig.mk
 /devices/platform/msm_hsusb_host/usb    auto       auto    defaults     voldmanaged=usbdisk:auto

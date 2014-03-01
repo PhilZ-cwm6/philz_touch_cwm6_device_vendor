@@ -67,23 +67,23 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # Use this flag if the board has a ext4 partition larger than 2gb
 BOARD_HAS_LARGE_FILESYSTEM := true
 
-TARGET_PREBUILT_KERNEL = device/samsung/i9103/kernel
+TARGET_PREBUILT_KERNEL = device/samsung/i9103/recovery/kernel-selinux
 
 #TARGET_KERNEL_SOURCE := kernel/samsung/n1
 #TARGET_KERNEL_CONFIG := gk_i9103_defconfig
 # TARGET_KERNEL_SELINUX_CONFIG := selinux_config
 # TARGET_KERNEL_TOOLCHAIN := prebuilts/gcc/$(HOST_PREBUILT_TAG)/arm/arm-eabi-4.7/bin/arm-eabi-
 
-TARGET_NO_KERNEL := false
-TARGET_NO_RECOVERY := false
+# TARGET_NO_KERNEL := false
+# TARGET_NO_RECOVERY := false
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Required to build a recovery image of 5MB max
-ifeq ($(TARGET_NO_RECOVERY),false)
+# ifeq ($(TARGET_NO_RECOVERY),false)
     BOARD_CUSTOM_BOOTIMG_MK := device/samsung/i9103/recovery/bootimg.mk
-    TARGET_PREBUILT_RECOVERY_KERNEL := device/samsung/i9103/recovery/kernel-selinux
-endif
+#     TARGET_PREBUILT_RECOVERY_KERNEL := device/samsung/i9103/recovery/kernel-selinux
+# endif
 
 # New CM 10.2 HW settings
 BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
@@ -179,7 +179,6 @@ BOARD_CHARGER_RES := $(LOCAL_PATH)/res/charger
 BOARD_SUPPRESS_EMMC_WIPE := true
 
 # Recovery
-TARGET_RECOVERY_INITRC := $(LOCAL_PATH)/recovery/init.recovery.n1.rc
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/i9103/recovery/recovery_keys.c
 BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/i9103/recovery/graphics.c
 TARGET_RECOVERY_FSTAB := device/samsung/i9103/fstab.n1

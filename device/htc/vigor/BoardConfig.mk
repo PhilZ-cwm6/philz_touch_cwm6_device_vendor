@@ -37,7 +37,7 @@ BOARD_KERNEL_PAGE_SIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL3 androidboot.hardware=vigor no_console_suspend=1 androidboot.selinux=permissive
 TARGET_KERNEL_VERSION := 3.0
 TARGET_KERNEL_CONFIG := vigor_aosp_defconfig
-TARGET_KERNEL_SOURCE := kernel/htc/vigor-$(TARGET_KERNEL_VERSION)
+TARGET_KERNEL_SOURCE := kernel/htc/vigor
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280

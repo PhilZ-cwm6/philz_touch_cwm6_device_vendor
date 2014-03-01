@@ -178,7 +178,9 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.bt.bdaddr_path=/data/misc/bdaddr
+	ro.bt.bdaddr_path=/data/misc/bdaddr \
+	ro.loki_enabled=1
+
 
 # This hw ships locked, work around it with loki
 PRODUCT_PACKAGES += \

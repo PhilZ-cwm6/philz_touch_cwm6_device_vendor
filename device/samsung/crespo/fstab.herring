@@ -4,14 +4,15 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 
-/dev/block/platform/s3c-sdhci.0/by-name/media           /sdcard         vfat      defaults                                              recoveryonly
+#/dev/block/platform/s3c-sdhci.0/by-name/media           /sdcard         vfat      defaults                                              recoveryonly
 cache                                                   /cache          yaffs2    defaults                                              recoveryonly
 misc                                                    /misc           mtd       defaults                                              recoveryonly
 boot                                                    /boot           mtd       defaults                                              recoveryonly
 recovery                                                /recovery       mtd       defaults                                              recoveryonly
 bootloader                                              /bootloader     mtd       defaults                                              recoveryonly
 radio                                                   /radio          mtd       defaults                                              recoveryonly
-
+wimax							/wimax	        mtd       defaults                                              recoveryonly
+efs							/efs            yaffs2    defaults                                              recoveryonly
 /dev/block/platform/s3c-sdhci.0/by-name/system          /system         ext4      ro                                                    wait
 /dev/block/platform/s3c-sdhci.0/by-name/userdata        /data           ext4      noatime,nosuid,nodev,nomblk_io_submit,errors=panic    wait,encryptable=/efs/userdata_footer
 

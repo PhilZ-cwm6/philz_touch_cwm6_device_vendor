@@ -40,6 +40,9 @@ BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_FSTAB = device/lge/e975/fstab.geehrc
 
+# assert
+TARGET_OTA_ASSERT_DEVICE := LG-E975,e975,geehrc,geehrc_open_eu
+
 -include vendor/lge/e975/BoardConfigVendor.mk
 
 BOARD_HAS_NO_SELECT_BUTTON := true

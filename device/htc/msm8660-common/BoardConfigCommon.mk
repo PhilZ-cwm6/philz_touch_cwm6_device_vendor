@@ -20,7 +20,7 @@ TARGET_SPECIFIC_HEADER_PATH := device/htc/msm8660-common/include
 TARGET_NO_BOOTLOADER := true
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/htc/vigor-3.0
+#TARGET_KERNEL_SOURCE := kernel/htc/vigor-3.0
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8660

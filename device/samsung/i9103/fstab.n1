@@ -26,6 +26,6 @@
 # recovery
 /dev/block/mmcblk0p9    /boot          emmc      defaults      recoveryonly
 /dev/block/mmcblk0p8    /recovery      emmc      defaults      recoveryonly
-/dev/block/mmcblk0p4    /emmc          auto      defaults      recoveryonly
-/dev/block/mmcblk1p1    /sdcard        auto      defaults      recoveryonly
+#/dev/block/mmcblk0p4    /emmc          auto      defaults      recoveryonly
+#/dev/block/mmcblk1p1    /sdcard        auto      defaults      recoveryonly
 

@@ -33,9 +33,31 @@ TARGET_SPECIFIC_HEADER_PATH := device/htc/m7-common/include
 BOARD_KERNEL_BASE := 0x80600000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01800000
+# PhilZ needs special args for stock kernels
+# BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01800000
+# PhilZ: start use stock kernels
+ifeq ($(TARGET_DEVICE),m7spr)
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01408000
+TARGET_PREBUILT_KERNEL := device/htc/m7-common/recovery/sprint/kernel_stock_sprint-FW_3.05.651.6
+TARGET_EXFAT_MODULE := device/htc/m7-common/recovery/sprint/texfat.ko
+else ifeq ($(TARGET_DEVICE),m7vzw)
+TARGET_PREBUILT_KERNEL := device/htc/m7-common/recovery/verizon/kernel_stock_vzw
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 androidboot.selinux=permissive
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01808000
+TARGET_EXFAT_MODULE := device/htc/m7-common/recovery/verizon/texfat.ko
+else
+# m7ul, m7att, m7tmo
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01808000
+TARGET_PREBUILT_KERNEL := device/htc/m7-common/recovery/kernel-stock_FW_4.19.401.8
+TARGET_EXFAT_MODULE := device/htc/m7-common/recovery/ko_modules/texfat.ko
+endif
+
 TARGET_KERNEL_CONFIG := m7_defconfig
-TARGET_KERNEL_SOURCE := kernel/htc/msm8960
+# TARGET_KERNEL_SOURCE := kernel/htc/msm8960
+
+# exfat kernel module
+PRODUCT_COPY_FILES += \
+    $(TARGET_EXFAT_MODULE):recovery/root/lib/modules/texfat.ko
 
 # Audio
 BOARD_USES_FLUENCE_INCALL := true  # use DMIC in call only
@@ -102,7 +124,8 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # Charge mode
-BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
+# PhilZ uses stock kernel that has no lpm.rc - we use init.rc instead
+# BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
 # inherit from the proprietary version
 -include vendor/htc/m7-common/BoardConfigVendor.mk
