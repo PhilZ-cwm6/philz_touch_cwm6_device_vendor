@@ -1,0 +1,10 @@
+[
+ {
+   "repository": "android_device_lge_iprj-common",
+   "target_path": "device/lge/iprj-common"
+ },
+ {
+   "repository": "lge-kernel-iproj",
+   "target_path": "kernel/lge/iproj"
+ }
+]

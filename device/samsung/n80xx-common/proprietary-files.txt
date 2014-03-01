@@ -1,0 +1,10 @@
+system/bin/gpsd
+system/lib/libakm.so
+system/lib/libsec-ril.so
+system/lib/hw/vendor-camera.exynos4.so
+system/lib/hw/gps.exynos4.so
+system/lib/hw/sensors.smdk4x12.so
+system/usr/idc/sec_e-pen.idc
+system/usr/keylayout/max77693-muic.kl
+system/usr/keylayout/samsung-keypad.kl
+system/usr/keylayout/sec_keyboard.kl

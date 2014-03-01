@@ -1,0 +1,67 @@
+# Audio
+lib/libaudcal.so
+lib/libaudioalsa.so
+lib/libcsd-client.so
+
+# Radio
+bin/netmgrd
+bin/sec-ril
+bin/qmiproxy
+bin/qmuxd
+bin/rild
+lib/libsecril-client.so
+lib/libqmi.so
+lib/libqdi.so
+lib/libqdp.so
+lib/libqmiservices.so
+lib/libreference-ril.so
+lib/libdsi_netctrl.so
+lib/libnetmgr.so
+lib/libqmi_cci.so
+lib/libqmi_csi.so
+lib/libqcci_legacy.so
+lib/libqmi_client_qmux.so
+lib/libomission_avoidance.so
+lib/libfactoryutil.so
+
+# NFC
+lib/hw/nfc.MSM8960.so
+vendor/firmware/libpn544_fw.so
+
+# Camera
+lib/hw/camera.msm8960.so:lib/hw/camera.vendor.msm8960.so
+lib/libmmjpeg.so
+lib/libmmstillomx.so
+lib/libimage-jpeg-dec-omx-comp.so
+lib/libimage-jpeg-enc-omx-comp.so
+lib/libimage-omx-common.so
+lib/libgemini.so
+lib/liboemcamera.so
+lib/libmmcamera_frameproc.so
+lib/libmmcamera_statsproc30.so
+lib/libchromatix_s5k3l1yx_default_video.so
+lib/libchromatix_s5k3l1yx_preview.so
+lib/libchromatix_s5k3l1yx_video_hd.so
+lib/libchromatix_s5k3l1yx_zsl.so
+
+# Sensors
+bin/geomagneticd
+bin/orientationd
+lib/hw/sensors.msm8960.so
+lib/libsensor_yamaha532_test.so
+
+# Wi-Fi
+bin/macloader
+etc/firmware/wcnss.b00
+etc/firmware/wcnss.b01
+etc/firmware/wcnss.b02
+etc/firmware/wcnss.b04
+etc/firmware/wcnss.b05
+etc/firmware/wcnss.mdt
+
+# Bluetooth
+bin/btnvtool
+bin/hci_qcomm_init
+
+# General
+lib/libdiag.so

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+<resources>
+    <string name="app_name">Haladó beállítások</string>
+
+    <string name="category_screen_title">Képernyő</string>
+    <string name="category_touchkey_title">Érintő Gombok</string>
+    <string name="backlight_title_head">Háttérvilágítás beállítások</string>
+    <string name="backlight_summary_head">Háttérvilágításos értesítés beállítások (külső alkalmazás)</string>
+    <string name="backlight_timeout_title_head">Háttérvilágítás Időtúllépése</string>
+    <string name="backlight_timeout_summary_head">Állítsa be, mennyi idő után kapcsoljon ki autómatikusan a háttérvilágítás</string>
+
+    <string name="g_sensor_title">Vízszintes kalibrálás</string>
+    <string name="g_sensor_summary">Vízszintes kalibrálás a gyorsulásméró segítségével</string>
+    <string name="gsensor_ready">Helyezze a készüléket egy sík felületre és érintse meg a Kalibrálás gombot</string>
+    <string name="gsensor_calibrating">Kalibrálás. Ne mozgassa a készüléket. Kérjük, várjon...</string>
+    <string name="gsensor_nofile">A fájl nem található. Próbálja újra</string>
+    <string name="gsensor_end">Kalibrálva</string>
+    <string name="gsensor_button1">Kész</string>
+    <string name="gsensor_button2">Kalibrálás</string>
+
+    <string name="category_fast_charge_title">Gyors töltés</string>
+    <string name="force_fast_charge_head">Gyors töltés kényszerítése</string>
+    <string name="force_fast_charge_summary_head">Észlelje az USB-n csatlakoztatott PC-t USB-s Fali Töltőként a gyorsabb töltési módért</string>
+
+    <string name="category_vibration_title">Vibráció</string>
+    <string name="vibration_title_head">Vibráció</string>
+    <string name="vibration_summary_head">Állítsa be a vibráció erősségét</string>
+    <string name="vibration_title">Vibráció erőssége</string>
+    <string name="vibration_test_title">Teszt</string>
+
+    <string name="button_reset_title">Visszaállítás</string>
+</resources>

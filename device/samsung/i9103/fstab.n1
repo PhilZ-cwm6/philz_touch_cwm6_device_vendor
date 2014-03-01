@@ -1,0 +1,31 @@
+# Android fstab file.
+#<src>                  <mnt_point>    <type>    <mnt_flags and options>                                     <fs_mgr_flags>
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# Init mount points
+/dev/block/mmcblk0p2    /system        ext4      ro,noatime                                                  wait
+
+/dev/block/mmcblk0p1    /efs           ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic      wait,context=u:object_r:radio_efs_file:s0
+/dev/block/mmcblk0p3    /cache         ext4      noatime,nosuid,nodev,journal_async_commit,nodelalloc        wait
+
+# data partition must be located at the bottom for supporting device encryption
+/dev/block/mmcblk0p6    /data          ext4      noatime,nosuid,nodev,journal_async_commit,nodelalloc,errors=panic    wait,check,encryptable=/efs/metadata
+
+/dev/block/mmcblk0p11   /preload       ext4      ro,noatime,nosuid,nodev,journal_async_commit                wait
+
+# internal sdcard (:4 means 179:4 inode)
+/devices/platform/sdhci-tegra.3/mmc_host/mmc0 auto  auto default                                 voldmanaged=sdcard0:4,nonremovable,encryptable,noemulatedsd
+
+# external sdcard
+/devices/platform/sdhci-tegra.2/mmc_host/mmc1 auto  auto default                                 voldmanaged=sdcard1:auto,noemulatedsd
+
+# USB storage device
+/devices/platform/tegra-ehci.0/usb            auto auto default                                 voldmanaged=usbdisk0:auto,noemulatedsd
+
+# recovery
+/dev/block/mmcblk0p9    /boot          emmc      defaults      recoveryonly
+/dev/block/mmcblk0p8    /recovery      emmc      defaults      recoveryonly
+/dev/block/mmcblk0p4    /emmc          auto      defaults      recoveryonly
+/dev/block/mmcblk1p1    /sdcard        auto      defaults      recoveryonly
+

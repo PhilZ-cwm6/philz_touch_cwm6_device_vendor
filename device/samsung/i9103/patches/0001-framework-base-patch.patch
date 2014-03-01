@@ -1,0 +1,25 @@
+From a7912a1dec11362c5ad9f1c0b449b3c1cf9dfe3a Mon Sep 17 00:00:00 2001
+From: hjunii <hjunii@gmail.com>
+Date: Mon, 2 Dec 2013 17:07:05 +0900
+Subject: [PATCH 1/1] framework base patch
+
+Change-Id: Ia85cf50b977b0d6f412dde2be4caa2aeab471532
+---
+ wifi/java/android/net/wifi/WifiMonitor.java | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/wifi/java/android/net/wifi/WifiMonitor.java b/wifi/java/android/net/wifi/WifiMonitor.java
+index 6817777..880d9c4 100644
+--- a/wifi/java/android/net/wifi/WifiMonitor.java
++++ b/wifi/java/android/net/wifi/WifiMonitor.java
+@@ -433,7 +433,6 @@ public class WifiMonitor {
+                         } catch (InterruptedException ignore) {
+                         }
+                     } else {
+-                        mIfaceMap.remove(iface);
+                         m.mWifiStateMachine.sendMessage(SUP_DISCONNECTION_EVENT);
+                         Log.e(TAG, "startMonitoring(" + iface + ") failed!");
+                         break;
+-- 
+1.8.3.2
+

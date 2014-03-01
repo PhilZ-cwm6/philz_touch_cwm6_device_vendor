@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="4">
+    <bool name="enabledMMS">true</bool>
+    <bool name="enableSplitSMS">true</bool>
+    <int name="maxMessageSize">524288</int>
+    <int name="maxImageHeight">960</int>
+    <int name="maxImageWidth">1280</int>
+    <int name="defaultSMSMessagesPerThread">200</int>
+    <int name="defaultMMSMessagesPerThread">20</int>
+    <int name="minMessageCountPerThread">2</int>
+    <int name="maxMessageCountPerThread">5000</int>
+    <bool name="enabledTransID">true</bool>
+    <int name="recipientLimit">40</int>
+    <int name="smsToMmsTextThreshold">4</int>
+    <string name="uaProfTagName">Profile</string>
+    <string name="userAgent">LGE-VS920/Android-mms\u0020</string>
+    <string
+    name="uaProfUrl">http://uaprof.vtext.com/lg/vs920/vs920.xml</string>
+</mms_config>

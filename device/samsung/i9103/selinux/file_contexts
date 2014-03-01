@@ -1,0 +1,52 @@
+# Tegra
+/dev/knvmap                                 u:object_r:knv_device:s0
+/sys/devices/system/cpu(/.*)?               u:object_r:sysfs_devices_system_cpu:s0
+/dev/tegra-throughput                       u:object_r:nvhost_writable_device:s0
+/dev/nvhost.*                               u:object_r:nvhost_device:s0
+/dev/nvhost-ctrl                            u:object_r:nvhost_writable_device:s0
+/dev/nvhost-gr2d                            u:object_r:nvhost_writable_device:s0
+/dev/nvhost-gr3d                            u:object_r:nvhost_writable_device:s0
+/sys/devices/tegradc\.0(/.*)?               u:object_r:sysfs_devices_tegradc:s0
+
+# RIL
+/dev/block/mmcblk0p1                        u:object_r:radio_device:s0
+/dev/block/mmcblk0p7                        u:object_r:radio_device:s0
+/dev/umts_boot0                             u:object_r:radio_device:s0
+/dev/umts_boot1                             u:object_r:radio_device:s0
+/dev/umts_ipc0                              u:object_r:radio_device:s0
+/dev/umts_loopback0                         u:object_r:radio_device:s0
+/dev/umts_ramdump0                          u:object_r:radio_device:s0
+/dev/umts_rfs0                              u:object_r:radio_device:s0
+/dev/umts_router                            u:object_r:radio_device:s0
+/data/NVM.*                                 u:object_r:radio_data_file:s0
+/data/radio/.*                              u:object_r:radio_data_file:s0
+
+# Bluetooth
+/dev/ttyHS2                                 u:object_r:hci_attach_dev:s0
+/efs/bluetooth/.*                           u:object_r:bluetooth_efs_file:s0
+
+# GPS
+/dev/ttyHS0                                 u:object_r:gps_device:s0
+
+# Sensors
+/dev/akm8975                                u:object_r:sensors_device:s0
+#/dev/mpu                                   u:object_r:sensors_device:s0
+
+/data/calibration(/.*)?                     u:object_r:sensors_data_file:s0
+/data/lightsensor(/.*)?                     u:object_r:sensors_data_file:s0
+/data/sensors(/.*)?                         u:object_r:sensors_data_file:s0
+
+# for wpa_supp
+#/dev/rfkill                                 u:object_r:rfkill_device:s0
+
+# Firmwares
+#/etc/firmware/bcm4330.hcd                   u:object_r:rfkill_device:s0
+
+# System binaries
+/system/bin/restorecon                      u:object_r:restorecon_exec:s0
+/system/bin/cbd                             u:object_r:cbd_exec:s0
+
+# Busybox
+/system/xbin/setenforce                     u:object_r:setenforce_exec:s0
+/system/xbin/restorecon                     u:object_r:restorecon_exec:s0
+

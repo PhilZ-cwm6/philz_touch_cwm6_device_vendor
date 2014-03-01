@@ -1,0 +1,37 @@
+#
+# Copyright 2012 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the"License");
+# you may not use this file except in compliance with theLicense.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,software
+# distributed under the License is distributed on an "AS IS"BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressor implied.
+# See the License for the specific language governingpermissions and
+# limitations under the License.
+#
+
+import init.ls970-common.rc
+
+on fs
+    # mount ALL THE THINGS
+    mount_all ./fstab.ls970
+    setprop ro.crypto.fuse_sdcard true
+
+on init
+    # See storage config details at http://source.android.com/tech/storage/
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage/emulated 0555 root root
+
+    export EXTERNAL_STORAGE /storage/emulated/legacy
+    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+    export EMULATED_STORAGE_TARGET /storage/emulated
+
+    # Support legacy paths
+    symlink /storage/emulated/legacy /sdcard
+    symlink /storage/emulated/legacy /mnt/sdcard
+    symlink /storage/emulated/legacy /storage/sdcard0
+    symlink /mnt/shell/emulated/0 /storage/emulated/legacy

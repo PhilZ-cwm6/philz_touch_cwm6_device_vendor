@@ -1,0 +1,53 @@
+#
+# system.prop for smdk4x12
+#
+
+dalvik.vm.dexopt-data-only=1
+rild.libpath=/system/lib/libril-qc-qmi-1.so
+rild.libargs=-d /dev/ttyS0
+ro.sf.lcd_density=320
+ro.lcd_min_brightness=20
+telephony.lteOnCdmaDevice=1
+ro.cdma.subscribe_on_ruim_ready=true
+ril.subscription.types=RUIM,NV
+persist.radio.no_wait_for_card=0
+ro.hdcp2.rx=tz
+
+#
+# system props for the data modules
+#
+ro.use_data_netmgrd=true
+persist.data_netmgrd_nint=16
+
+#
+# Needed to match behavior of stock rom
+#      D/PHONE: mDoesRilSendMultipleCallRing=false
+#
+ro.telephony.call_ring.multiple=0
+
+# Fields for custom RIL
+# MAX PROP NAME is 31 chars --|
+gsm.sim.operator.alpha = sprint
+gsm.sim.operator.numeric = 310120
+gsm.sim.operator.iso-country = us
+gsm.operator.alpha = sprint
+gsm.operator.numeric = 310120
+gsm.operator.iso-country = us
+ro.cdma.home.operator.numeric=310120
+ro.cdma.home.operator.alpha=Sprint
+ro.telephony.default_network=8
+keyguard.no_require_sim=true
+ro.ril.svdo=true
+telephony.sms.pseudo_multipart=1
+
+# System property for SIM
+persist.radio.apm_sim_not_pwdn=0
+
+# System property for sys info indication
+persist.radio.add_power_save=1
+
+# System propverty snapshot disable
+persist.radio.snapshot_disabled=1
+
+# Default ECCList (Except USCC)
+ro.ril.ecclist=112,911,#911,*911

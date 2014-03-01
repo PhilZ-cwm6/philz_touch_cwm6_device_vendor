@@ -1,0 +1,2 @@
+require board=smdk4210
+require version-bootloader=D710XXX

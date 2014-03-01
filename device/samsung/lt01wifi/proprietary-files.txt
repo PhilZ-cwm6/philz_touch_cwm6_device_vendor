@@ -1,0 +1,5 @@
+system/etc/wifi/bcmdhd_apsta.bin_b2
+system/etc/wifi/bcmdhd_mfg.bin_b2
+system/etc/wifi/bcmdhd_sta.bin_b2
+system/etc/wifi/nvram_mfg.txt
+system/etc/wifi/nvram_net.txt

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2010 T-Mobile USA, Inc.
+     Copyright (C) 2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">主题选择器</string>
+
+    <string name="menu_apply">应用</string>
+    <string name="menu_uninstall">卸载</string>
+    <string name="menu_about">关于</string>
+
+    <string name="theme_current">%s (使用中)</string>
+    <string name="theme_current_author">作者：</string>
+    <string name="theme_current_name">名称：</string>
+    <string name="theme_current_package">软件包：</string>
+    <string name="theme_change_dialog_title">应用中\u2026</string>
+    <string name="switching_to_theme">正在切换至 <xliff:g id="theme">%s</xliff:g>\u2026</string>
+
+    <string name="dialog_theme_error_title">主题错误</string>
+    <string name="dialog_missing_host_density_msg">此主题缺少适合您设备屏幕大小的资源文件</string>
+    <string name="dialog_missing_theme_package_scope_msg">此主题被不恰当的编译和不能被应用，请向主题作者汇报此情況</string>
+    <string name="dialog_apply_anyway_btn">依然应用</string>
+</resources>

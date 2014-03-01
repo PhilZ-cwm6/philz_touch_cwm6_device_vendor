@@ -1,0 +1,14 @@
+## RIL
+allow rild self:netlink_socket { create bind read write };
+allow rild self:netlink_route_socket { write };
+
+allow rild radio_device:chr_file rw_file_perms;
+allow rild diag_device:chr_file rw_file_perms;
+
+allow rild { efs_file }:file rw_file_perms;
+allow rild { radio_data_file }:file rw_file_perms;
+
+allow rild init:unix_stream_socket { create read write setopt bind };
+
+allow rild sysfs:file { read open write getattr };
+

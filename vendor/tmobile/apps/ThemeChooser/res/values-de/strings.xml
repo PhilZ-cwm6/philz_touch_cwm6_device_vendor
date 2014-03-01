@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2010 T-Mobile USA, Inc.
+     Copyright (C) 2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Designs</string>
+    <string name="menu_apply">Aktivieren</string>
+    <string name="menu_uninstall">Deinstallieren</string>
+    <string name="menu_about">Über</string>
+    <string name="theme_current">%s (aktuell)</string>
+    <string name="theme_current_author">Autor: </string>
+    <string name="theme_current_name">Name: </string>
+    <string name="theme_current_package">Paket: </string>
+    <string name="theme_change_dialog_title">Bitte warten\u2026</string>
+    <string name="switching_to_theme"><xliff:g id="theme">%s</xliff:g> wird aktiviert\u2026</string>
+    <string name="dialog_theme_error_title">Fehler</string>
+    <string name="dialog_missing_host_density_msg">Diesem Design fehlen Inhalte für die Bildschirmauflösung des Gerätes</string>
+    <string name="dialog_missing_theme_package_scope_msg">Dieses Design ist fehlerhaft</string>
+    <string name="dialog_apply_anyway_btn">Trotzdem aktivieren</string>
+</resources>

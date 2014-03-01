@@ -1,0 +1,12 @@
+# mount point    fstype       device                                       device2
+/efs             ext4         /dev/block/platform/dw_mmc/by-name/EFS
+/boot            emmc         /dev/block/platform/dw_mmc/by-name/BOOT
+/recovery        emmc         /dev/block/platform/dw_mmc/by-name/RECOVERY
+/cache           ext4         /dev/block/platform/dw_mmc/by-name/CACHE
+/system          ext4         /dev/block/platform/dw_mmc/by-name/SYSTEM
+/data            ext4         /dev/block/platform/dw_mmc/by-name/USERDATA  length=-16384
+
+/sdcard          datamedia    /dev/null
+/external_sd     auto         /dev/block/mmcblk1p1                         /dev/block/mmcblk1
+
+

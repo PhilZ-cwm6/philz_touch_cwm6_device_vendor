@@ -1,0 +1,92 @@
+# Configuration files
+etc/agps_rm
+
+# Executable files
+bin/akmd
+bin/charging
+bin/hci_qcomm_init
+bin/mm-qcamera-daemon
+bin/mpdecision
+bin/rmt_storage
+bin/thermald
+
+# Audio
+lib/libacdbloader.so
+lib/libaudcal.so
+
+# Camera
+lib/hw/vendor-camera.msm8960.so
+lib/libBeautyChat.so
+lib/libcameraasd.so
+lib/libcameraface.so
+lib/libcamerapp.so
+lib/libcam_oem_plugin.so
+lib/libgemini.so
+lib/libHTC_DIS.so
+lib/libhtccamera.so
+lib/libimage-jpeg-dec-omx-comp.so
+lib/libimage-jpeg-enc-omx-comp.so
+lib/libimage-omx-common.so
+lib/libmmcamera_faceproc.so
+lib/libmmcamera_frameproc.so
+lib/libmmcamera_hdr_lib.so
+lib/libmmcamera_image_stab.so
+lib/libmmcamera_interface2.so
+lib/libmmcamera_rawchipproc.so
+lib/libmmcamera_statsproc31.so
+lib/libmmcamera_wavelet_lib.so
+lib/libmmipl.so
+lib/libmmjpeg.so
+lib/libmmmpod.so
+lib/libmmstillomx.so
+lib/liboemcamera.so
+lib/libposteffect.so
+
+# GPS
+lib/libgeofence.so
+lib/libloc_api_v02.so
+
+# Graphics
+lib/egl/eglsubAndroid.so
+lib/egl/libEGL_adreno200.so
+lib/egl/libGLESv1_CM_adreno200.so
+lib/egl/libGLESv2_adreno200.so
+lib/egl/libq3dtools_adreno200.so
+lib/egl/libplayback_adreno200.so
+lib/libC2D2.so
+lib/libc2d2_z180.so
+lib/libgsl.so
+lib/libllvm-a3xx.so
+lib/libOpenCL.so
+lib/libOpenVG.so
+lib/libsc-a2xx.so
+
+# Graphics firmware
+etc/firmware/a225p5_pm4.fw
+etc/firmware/a225_pfp.fw
+etc/firmware/a225_pm4.fw
+etc/firmware/leia_pfp_470.fw
+etc/firmware/leia_pm4_470.fw
+etc/firmware/vidc_1080p.fw
+
+# Media libraries
+lib/libExtendedExtractor.so
+lib/libI420colorconvert.so
+lib/libmm-color-convertor.so
+
+# Qualcomm extra
+vendor/lib/libqc-opt.so
+
+# Widevine
+vendor/lib/libwvm.so
+vendor/lib/libWVStreamControlAPI_L3.so
+
+# WLAN
+etc/firmware/wlan/prima/WCNSS_cfg.dat
+etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini
+etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+etc/firmware/wcnss.b00
+etc/firmware/wcnss.b01
+etc/firmware/wcnss.b02
+etc/firmware/wcnss.b04
+etc/firmware/wcnss.mdt

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="4">
+    <bool name="enabledMMS">true</bool>
+    <bool name="enabledTransID">true</bool>
+    <int name="maxMessageSize">512000</int>
+    <int name="maxImageHeight">960</int>
+    <int name="maxImageWidth">1280</int>
+    <int name="maxVideoHeight">240</int>
+    <int name="maxVideoWidth">320</int>
+    <int name="defaultSMSMessagesPerThread">200</int>
+    <int name="defaultMMSMessagesPerThread">20</int>
+    <int name="minMessageCountPerThread">10</int>
+    <int name="maxMessageCountPerThread">5000</int>
+    <int name="recipientLimit">10</int>
+    <int name="smsToMmsTextThreshold">2</int>
+    <int name="countOfHighPriorityMessage">0</int>
+    <string name="uaProfTagName">Profile</string>
+    <string name="userAgent">N861 Boost</string>
+	<string name="mmsproxy"></string>
+    <string name="mmscurl">http://mm.myboostmobile.com</string>
+    <string name="uaProfUrl">http://device.sprintpcs.com/ZTE/N861-BOOST/N861V1.0.0B04.rdf</string>
+    <string name="PluggerCenter">9798</string>
+    <string name="ProjectName">N861</string>
+    <string name="emailGatewayNumber">6245</string>
+</mms_config>

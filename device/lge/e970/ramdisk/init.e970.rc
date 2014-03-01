@@ -1,0 +1,53 @@
+#
+# Copyright 2012 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the"License");
+# you may not use this file except in compliance with theLicense.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,software
+# distributed under the License is distributed on an "AS IS"BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressor implied.
+# See the License for the specific language governingpermissions and
+# limitations under the License.
+#
+
+import init.ls970-common.rc
+
+on init
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage 0550 system sdcard_r
+    mkdir /storage/emulated 0555 root root
+
+    #External storage directories
+    chmod 0701 /mnt/media_rw
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    mkdir /storage/sdcard1 0700 root root
+#    mkdir /storage/sdcard1 0000 system system
+
+    export EXTERNAL_STORAGE /storage/emulated/legacy
+    export SECONDARY_STORAGE /storage/sdcard1
+    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+    export EMULATED_STORAGE_TARGET /storage/emulated
+
+    # for backwards compatibility
+    symlink /storage/emulated/legacy /sdcard
+    symlink /storage/emulated/legacy /mnt/sdcard
+    symlink /storage/emulated/legacy /storage/sdcard0
+    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+#    symlink /storage/sdcard1 /extSdCard
+#    symlink /storage/sdcard1 /mnt/extSdCard
+
+    setprop ro.usb.idproduct.mtp 631C
+    setprop ro.usb.idproduct.mtp_adb 61F9
+
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled
+
+on fs
+    # mount ALL THE THINGS
+    mount_all ./fstab.e970
+    setprop ro.crypto.fuse_sdcard true

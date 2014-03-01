@@ -1,0 +1,9 @@
+allow init wpa_socket:unix_dgram_socket { bind create };
+
+type cbd, domain;
+
+# Start /system/bin/cbd from init
+init_daemon_domain(cbd)
+
+allow cbd cbd_exec:file { open execute_no_trans getattr };
+

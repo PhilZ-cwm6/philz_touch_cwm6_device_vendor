@@ -1,0 +1,50 @@
+[
+  {
+    "remote": "gh",
+    "repository": "vigor/android_hardware_qcom_media-legacy",
+    "target_path": "hardware/qcom/media-legacy",
+    "revision": "cm-11.0_hybrid"
+  },
+  {
+    "remote": "gh",
+    "repository": "vigor/android_hardware_qcom_display-legacy",
+    "target_path": "hardware/qcom/display-legacy",
+    "revision": "cm-11.0_hybrid"
+  },
+  {
+    "remote": "gh",
+    "repository": "vigor/android_device_htc_msm8660-common",
+    "target_path": "device/htc/msm8660-common",
+    "revision": "cm-11.0_hybrid"
+  },
+  {
+    "remote": "gh",
+    "repository": "vigor/vigor_aosp_kernel",
+    "target_path": "kernel/htc/vigor-3.0",
+    "revision": "cm-11.0_hybrid"
+  },
+  {
+    "remote": "gh",
+    "repository": "vigor/vendor_htc_vigor",
+    "target_path": "vendor/htc/vigor",
+    "revision": "cm-11.0_hybrid"
+  },
+  {
+    "remote": "gh",
+    "repository": "vigor/android_packages_apps_Camera2",
+    "target_path": "packages/apps/Camera2",
+    "revision": "cm-11.0_hybrid"
+  },
+  {
+    "remote": "gh",
+    "repository": "IAmTheOneTheyCallNeo/android_hardware_qcom_gps",
+    "target_path": "hardware/qcom/gps",
+    "revision": "tachyon-2.0"
+  },
+  {
+    "remote": "gh",
+    "repository": "vigor/device_htc_vigor",
+    "target_path": "device/htc/vigor",
+    "revision": "cm-11.0"
+  }
+]

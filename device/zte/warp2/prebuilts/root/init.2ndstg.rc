@@ -1,0 +1,16 @@
+on early-init
+    export SECONDARY_STORAGE /mnt/sdcard2
+    mkdir /mnt/sdcard2 0000 system system
+    # for backwards compatibility
+    symlink /mnt/sdcard2 /Device
+
+on post-fs-data
+    # we will remap this as /mnt/sdcard2 with the sdcard fuse tool
+    mkdir /data/media 0775 media_rw media_rw
+    chown media_rw media_rw /data/media
+
+# create virtual SD card at /mnt/sdcard2, based on the /data/media directory
+# daemon will drop to user/group system/media_rw after initializing
+# underlying files in /data/media will be created with user and group media_rw (1023)
+service sdcard /system/bin/sdcard /data/media 1023 1023
+    class late_start

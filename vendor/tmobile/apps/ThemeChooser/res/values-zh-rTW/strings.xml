@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2010 T-Mobile USA, Inc.
+     Copyright (C) 2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">主題</string>
+    <string name="menu_apply">套用</string>
+    <string name="menu_uninstall">解除安裝</string>
+    <string name="menu_about">關於</string>
+    <string name="theme_current">%s (使用中)</string>
+    <string name="theme_current_author">作者：</string>
+    <string name="theme_current_name">名稱：</string>
+    <string name="theme_current_package">套件：</string>
+    <string name="theme_change_dialog_title">套用中\u2026</string>
+    <string name="switching_to_theme">正在切換至 <xliff:g id="theme">%s</xliff:g>\u2026</string>
+    <string name="dialog_theme_error_title">主題錯誤</string>
+    <string name="dialog_missing_host_density_msg">這個主題沒有適合您裝置的螢幕解析度的資源</string>
+    <string name="dialog_missing_theme_package_scope_msg">這個主題被不正確地編譯因此無法套用</string>
+    <string name="dialog_apply_anyway_btn">仍要套用</string>
+</resources>

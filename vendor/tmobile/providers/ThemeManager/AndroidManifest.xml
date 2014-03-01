@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ # Copyright (C) 2010, T-Mobile USA, Inc.
+ #
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.
+ # You may obtain a copy of the License at
+ #
+ #      http://www.apache.org/licenses/LICENSE-2.0
+ #
+ # Unless required by applicable law or agreed to in writing, software
+ # distributed under the License is distributed on an "AS IS" BASIS,
+ # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pluto="http://www.w3.org/2001/pluto.html"
+    android:sharedUserId="com.tmobile.thememanager"
+    package="com.tmobile.thememanager"
+    android:versionCode="26"
+    android:versionName="2.0.25">
+
+    <!-- Allows windowless application of themes. -->
+    <permission android:name="com.tmobile.permission.CHANGE_THEME"
+        android:label="@string/permlab_set_theme"
+        android:description="@string/permdesc_set_theme"
+        android:protectionLevel="dangerous" />
+
+    <!-- Allows access to DRM-protected media resources in theme packages. -->
+    <permission android:name="com.tmobile.permission.ACCESS_DRM_THEME"
+        android:label="@string/permlab_access_DrmThemeResources"
+        android:description="@string/permdesc_access_DrmThemeResources"
+        android:protectionLevel="signature" />
+
+    <!-- XXX: DO NOT REQUEST DRM ACCESS PERMISSION!
+         You will have defeated our security model in the
+         PackageResourcesProvider, allowing abitrary access to DRM protected
+         theme resources. -->
+
+    <!-- Necessary to apply a theme. -->
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER_COMPONENT" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+
+    <!-- Grants read access to resources of DRM-protected themes -->
+    <uses-permission android:name="com.tmobile.permission.ACCESS_DRM_THEME" />
+
+    <!-- Manage the state of theme APKs across reboots. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Allows to remove theme packages. -->
+    <uses-permission android:name="android.permission.DELETE_PACKAGES" />
+
+    <application
+        android:label="@string/app_name" android:persistent="true" >
+
+        <provider android:name=".provider.PackageResourcesProvider"
+            android:exported="true"
+            android:authorities="com.tmobile.thememanager.packageresources" />
+
+        <provider android:name=".provider.ThemesProvider"
+            android:exported="true"
+            android:authorities="com.tmobile.thememanager.themes" />
+
+        <receiver
+            android:name=".receiver.ChangeThemeReceiver"
+            android:exported="true"
+            android:permission="com.tmobile.permission.CHANGE_THEME">
+
+            <intent-filter android:priority="100">
+                <action android:name="com.tmobile.intent.action.CHANGE_THEME" />
+                <data android:mimeType="vnd.tmobile.cursor.item/theme" />
+                <data android:mimeType="vnd.tmobile.cursor.item/style" />
+            </intent-filter>
+
+        </receiver>
+
+        <receiver android:name=".receiver.ThemePackageReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <category android:name="com.tmobile.intent.category.THEME_PACKAGE_INSTALL_STATE_CHANGE" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

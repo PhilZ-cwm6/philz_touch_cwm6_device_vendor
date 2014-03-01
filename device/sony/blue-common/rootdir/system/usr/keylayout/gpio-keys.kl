@@ -1,0 +1,7 @@
+# Volume keys
+key 115 VOLUME_UP   WAKE_DROPPED
+key 114 VOLUME_DOWN WAKE_DROPPED
+
+# Camera Keys
+key 528 FOCUS
+key 766 CAMERA WAKE

@@ -1,0 +1,13 @@
+type tegra_device, dev_type, mlstrustedobject;
+type nvhost_writable_device, dev_type, mlstrustedobject;
+type nvhost_device, dev_type;
+type knv_device, dev_type;
+
+type sensors_block_device, dev_type;
+type sysfs_devices_tegradc, dev_type;
+type diag_device, dev_type;
+type rfkill_device, dev_type;
+
+allow sysfs_devices_tegradc sysfs:filesystem associate;
+allow sysfs_devices_system_cpu sysfs:filesystem associate;
+

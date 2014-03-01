@@ -1,0 +1,7 @@
+# proprietary file list
+# bin/filename
+lib/libqmiservices.so
+lib/libril-qc-qmi-1.so
+
+#touchscreen
+etc/firmware/atmxt-r2.tdat

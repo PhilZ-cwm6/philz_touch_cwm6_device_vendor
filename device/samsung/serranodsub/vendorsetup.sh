@@ -1,0 +1,2 @@
+add_lunch_combo cm_serranodsub-userdebug
+add_lunch_combo cm_serranodsub-eng

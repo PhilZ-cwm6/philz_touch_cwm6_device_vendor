@@ -1,0 +1,161 @@
+# Misc executables
+bin/btnvtool
+bin/ds_fmc_appd
+bin/hci_qcomm_init
+bin/hwaddrs
+bin/irsc_util
+bin/mpdecision
+bin/radish
+
+# Audio
+lib/libacdbloader.so
+lib/libaudcal.so
+lib/libcsd-client.so
+
+# Thermal
+bin/thermald
+lib/libthermalclient.so
+
+# GPS
+-app/com.qualcomm.location.apk
+bin/gpsone_daemon
+bin/gsiff_daemon
+etc/permissions/com.qualcomm.location.xml
+lib/libgps.utils.so
+lib/libloc_core.so
+lib/libloc_api_v02.so
+lib/libloc_ds_api.so
+lib/libloc_eng.so
+lib/libloc_xtra.so
+lib/hw/gps.msm8960.so
+vendor/lib/libgeofence.so
+vendor/lib/libizat_core.so
+vendor/lib/liblbs_core.so
+vendor/lib/liblocationservice.so
+vendor/lib/libulp2.so
+vendor/lib/libquipc_os_api.so
+vendor/lib/libquipc_ulp_adapter.so
+
+# Graphics
+vendor/lib/egl/eglsubAndroid.so
+vendor/lib/egl/libEGL_adreno.so
+vendor/lib/egl/libGLESv1_CM_adreno.so
+vendor/lib/egl/libGLESv2_adreno.so
+vendor/lib/egl/libplayback_adreno.so
+vendor/lib/egl/libq3dtools_adreno.so
+vendor/lib/libadreno_utils.so
+vendor/lib/libc2d30-a3xx.so
+vendor/lib/libc2d30.so
+vendor/lib/libC2D2.so
+vendor/lib/libCB.so
+vendor/lib/libgsl.so
+vendor/lib/libllvm-a3xx.so
+vendor/lib/librs_adreno_sha1.so
+vendor/lib/librs_adreno.so
+vendor/lib/libRSDriver_adreno.so
+vendor/lib/libsc-a3xx.so
+
+# Graphics firmware
+etc/firmware/a300_pfp.fw
+etc/firmware/a300_pm4.fw
+etc/firmware/vidc.b00
+etc/firmware/vidc.b01
+etc/firmware/vidc.b02
+etc/firmware/vidc.b03
+etc/firmware/vidc.mdt
+etc/firmware/vidc_1080p.fw
+
+# Media
+lib/libI420colorconvert.so
+lib/libmmosal.so
+lib/libmmparser.so
+lib/libmm-color-convertor.so
+lib/libDivxDrm.so
+lib/libExtendedExtractor.so
+lib/libOmxAacDec.so
+lib/libOmxAmrwbplusDec.so
+lib/libOmxEvrcDec.so
+lib/libOmxQcelp13Dec.so
+lib/libOmxWmaDec.so
+
+# Qualcomm framework
+lib/libdsi_netctrl.so
+lib/libdsutils.so
+lib/libidl.so
+lib/libqcci_legacy.so
+lib/libqdi.so
+lib/libqdp.so
+lib/libqmi.so
+lib/libqmi_client_qmux.so
+lib/libqmi_csvt_srvc.so
+lib/libqmiservices.so
+vendor/lib/libdiag.so
+vendor/lib/libqmi_cci.so
+vendor/lib/libqmi_csi.so
+vendor/lib/libqmi_common_so.so
+vendor/lib/libqmi_encdec.so
+
+# Radio
+app/OppoNvProcess.apk
+app/OppoRadioShutdown.apk
+app/qcrilmsgtunnel.apk
+bin/bridgemgrd
+bin/efsks
+bin/ks
+bin/netmgrd
+bin/nv_tee
+bin/qcks
+bin/qmuxd
+bin/rmt_storage
+etc/permissions/qcnvitems.xml
+etc/permissions/qcrilhook.xml
+framework/qcnvitems.jar
+framework/qcrilhook.jar
+lib/libnetmgr.so
+lib/libril-qc-qmi-1.so
+lib/libril-qcril-hook-oem.so
+
+# Sensors
+bin/sensors.qcom
+lib/hw/sensors.msm8960.so
+lib/libAKM.so
+lib/libsensor1.so
+lib/libsensor_reg.so
+
+# DRM
+bin/oemwvtest
+bin/drmdiagapp
+bin/qseecomd
+etc/permissions/com.google.widevine.software.drm.xml
+framework/com.google.widevine.software.drm.jar
+lib/libdrmdecrypt.so
+lib/libdrmdiag.so
+lib/libdrmfs.so
+lib/libdrmtime.so
+lib/libQSEEComAPI.so
+vendor/lib/libwvdrm_L3.so
+vendor/lib/libwvm.so
+vendor/lib/libWVStreamControlAPI_L3.so
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/mediadrm/libwvdrmengine.so
+
+# Misc
+vendor/lib/libqc-opt.so
+lib/libadsprpc.so
+
+# Postprocessing
+-app/PPPreference.apk
+bin/mm-pp-daemon
+lib/libmm-abl.so
+lib/libmm-abl-oem.so
+
+# Time services
+bin/time_daemon
+-lib/libtime_genoff.so
+
+# Keystore
+vendor/firmware/keymaster/keymaster.b00
+vendor/firmware/keymaster/keymaster.b01
+vendor/firmware/keymaster/keymaster.b02
+vendor/firmware/keymaster/keymaster.b03
+vendor/firmware/keymaster/keymaster.mdt

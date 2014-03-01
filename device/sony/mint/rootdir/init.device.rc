@@ -1,0 +1,9 @@
+on boot
+    # Vibrator
+    chown system system /sys/devices/i2c-12/12-0049/intensity
+    chmod 666 /sys/devices/i2c-12/12-0049/intensity
+
+on post-fs
+    # Touch firmware update
+    write /data/etc/touch_default_module_id 32
+    mkdir /data/pc 700 radio radio

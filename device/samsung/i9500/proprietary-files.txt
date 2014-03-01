@@ -1,0 +1,132 @@
+# Audio
+vendor/firmware/es325_fw.bin
+vendor/firmware/srp_cga.bin
+vendor/firmware/srp_data.bin
+vendor/firmware/srp_vliw.bin
+
+# Bluetooth
+vendor/firmware/bcm4335.hcd
+vendor/firmware/bcm4335_A0.hcd
+vendor/firmware/bcm4335_murata.hcd
+vendor/firmware/bcm4335_semco.hcd
+
+# Camera
+lib/hw/camera.universal5410.so:lib/hw/camera.vendor.universal5410.so
+lib/libexynoscamera.so
+lib/libvdis.so
+
+# Graphics
+vendor/lib/egl/libEGL_POWERVR_SGX544_115.so
+vendor/lib/egl/libGLESv1_CM_POWERVR_SGX544_115.so
+vendor/lib/egl/libGLESv2_POWERVR_SGX544_115.so
+vendor/lib/libglslcompiler.so
+vendor/lib/libIMGegl.so
+vendor/lib/liboclcompiler.so
+vendor/lib/libpvr2d.so
+vendor/lib/libpvrANDROID_WSEGL.so
+vendor/lib/libPVROCL.so
+vendor/lib/libPVRScopeServices.so
+vendor/lib/libsrv_init.so
+vendor/lib/libsrv_um.so
+vendor/lib/libusc.so
+vendor/bin/pvrsrvctl
+
+# GPS
+bin/gpsd
+lib/hw/gps.default.so
+lib/libwrappergps.so
+
+# HWC
+vendor/lib/hw/gralloc.exynos5.so
+
+# LPM
+bin/lpmkey
+bin/playlpm
+media/Disconnected.qmg
+media/battery_batteryerror.qmg
+media/battery_charging_5.qmg
+media/battery_charging_10.qmg
+media/battery_charging_15.qmg
+media/battery_charging_20.qmg
+media/battery_charging_25.qmg
+media/battery_charging_30.qmg
+media/battery_charging_35.qmg
+media/battery_charging_40.qmg
+media/battery_charging_45.qmg
+media/battery_charging_50.qmg
+media/battery_charging_55.qmg
+media/battery_charging_60.qmg
+media/battery_charging_65.qmg
+media/battery_charging_70.qmg
+media/battery_charging_75.qmg
+media/battery_charging_80.qmg
+media/battery_charging_85.qmg
+media/battery_charging_90.qmg
+media/battery_charging_95.qmg
+media/battery_charging_100.qmg
+media/battery_error.qmg
+media/battery_wireless_charging_10.qmg
+media/battery_wireless_charging_100.qmg
+media/battery_wireless_charging_15.qmg
+media/battery_wireless_charging_20.qmg
+media/battery_wireless_charging_25.qmg
+media/battery_wireless_charging_30.qmg
+media/battery_wireless_charging_35.qmg
+media/battery_wireless_charging_40.qmg
+media/battery_wireless_charging_45.qmg
+media/battery_wireless_charging_5.qmg
+media/battery_wireless_charging_50.qmg
+media/battery_wireless_charging_55.qmg
+media/battery_wireless_charging_60.qmg
+media/battery_wireless_charging_65.qmg
+media/battery_wireless_charging_70.qmg
+media/battery_wireless_charging_75.qmg
+media/battery_wireless_charging_80.qmg
+media/battery_wireless_charging_85.qmg
+media/battery_wireless_charging_90.qmg
+media/battery_wireless_charging_95.qmg
+media/chargingwarning.qmg
+
+# Media
+vendor/firmware/fimc_is_gumi_fw2.bin
+vendor/firmware/fimc_is_sec_fw2.bin
+vendor/firmware/mfc_fw.bin
+vendor/firmware/setfile_6b2.bin
+vendor/firmware/setfile_gumi_imx135.bin
+vendor/firmware/setfile_sec_imx135.bin
+
+# NFC
+vendor/firmware/bcm2079xB4_firmware.ncd
+vendor/firmware/bcm2079xB4_pre_firmware.ncd
+
+# Radio
+bin/cbd
+lib/libsecnativefeature.so
+lib/libsec-ril.so
+
+# Sensors
+lib/hw/sensors.universal5410.so
+lib/libakm.so
+lib/libsensirion_j1.so
+
+# Widevine
+vendor/lib/libwvm.so
+lib/libWVStreamControlAPI_L1.so
+
+# Wifi
+etc/wifi/bcmdhd_apsta.bin
+etc/wifi/bcmdhd_mfg.bin
+etc/wifi/bcmdhd_sta.bin
+etc/wifi/cred.conf
+etc/wifi/nvram_mfg.txt
+etc/wifi/nvram_mfg.txt:etc/wifi/nvram_mfg.txt_murata
+etc/wifi/nvram_mfg.txt_muratafem1
+etc/wifi/nvram_mfg.txt_muratafem2
+etc/wifi/nvram_mfg.txt_semco3rd
+etc/wifi/nvram_mfg.txt_semcosh
+etc/wifi/nvram_net.txt
+etc/wifi/nvram_net.txt:etc/wifi/nvram_net.txt_murata
+etc/wifi/nvram_net.txt_muratafem1
+etc/wifi/nvram_net.txt_muratafem2
+etc/wifi/nvram_net.txt_semco3rd
+etc/wifi/nvram_net.txt_semcosh

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glgps xmlns="http://www.glpals.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.glpals.com/ glconfig.xsd" >
+
+<hal
+    acPortName="/dev/ttyHS4"
+    lBaudRate="115200"
+    cLogEnabled="false"
+    Log="FILE"
+    acLogDirectory="/sdcard/htclog/gps"
+    acLtoDir="data/gps/"
+    ltoFileName="lto.dat"
+    enhanced-assisted="false"
+    arp-supl-enable="true"
+    arp-supl-cap-msb="true"
+    arp-supl-cap-msa="true"
+    arp-supl-cap-ecid="false"
+    tlsEnable="false"
+    tlsCertPath="/data/gps/htc.pem"
+    tlsStopForInvPath="true"
+    arp-supl-ssl-method="TLSv1"
+    arp-supl-ssl-verify="peer"
+    gpioNStdbyPath="/sys/class/gpio/gpio125/value" 
+    gpioDelayMs="120"
+    acNvStoDir="/data/gps/"
+    acNmeaOutName="/data/gps/nmea_out"
+    ctrlPipe="/data/gps/glgpsctrl"
+    SuplVersion="1"
+    SuplMinorVersion="0"
+
+    cp-guard-time-sec="1"
+    cp-cold-start="true"
+/>
+
+<!-- 
+    acSuplServer="www.spirent-lcs.com"
+    SuplPort="7275"
+
+    acSuplServer="supl.google.com"
+    SuplPort="7276"
+-->
+
+<!-- GPS configuration with standalone 16.8 MHz TCXO  -->
+<gll
+    LogPriMask="LOG_DEBUG"
+    LogFacMask="LOG_GLLAPI | LOG_NMEA | LOG_RAWDATA"
+    FrqPlan="FRQ_PLAN_26MHZ_2PPM_26MHZ_300PPB"
+    RfType="GL_RF_47511_BRCM_EXT_LNA"
+    PmmPercent="30"
+/>
+
+<gll_features
+EnableLowPowerPedestrian="true"
+EnableLowPowerGlolp="true"
+/>
+
+<job id="normal">
+    <task >
+        <req_pos />
+    </task>
+</job>
+
+<job id="ColdStart-ULTS">
+    <task >
+        <startup ignore_time="true" ignore_osc="false" ignore_pos="true" ignore_nav="true" ignore_ram_alm="true" ignore_rom_alm="true" />
+        <req_pos />
+    </task>
+</job>
+
+<job id="qop-test-ULTS">
+    <task id="shot">
+        <startup ignore_time="true" ignore_osc="false" ignore_pos="true" ignore_nav="true" ignore_ram_alm="true" ignore_rom_alm="true" />
+        <req_pos_single acc="5000" timeout="20" />
+    </task>
+</job>
+
+</glgps>

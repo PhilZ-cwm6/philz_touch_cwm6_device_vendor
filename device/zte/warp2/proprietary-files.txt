@@ -1,0 +1,53 @@
+## RIL
+bin/qmuxd
+bin/rild
+lib/libnv.so
+lib/liboncrpc.so
+lib/libreference-ril.so
+lib/libril.so
+lib/libril-qc-1.so
+lib/libril-qc-qmi-1.so
+lib/libril-qcril-hook-oem.so
+lib/libauth.so
+lib/libcm.so
+lib/libdiag.so
+lib/libdsm.so
+lib/libdsutils.so
+lib/libdss.so
+lib/libgsdi_exp.so
+lib/libgstk_exp.so
+lib/libidl.so
+lib/liboncrpc.so
+lib/libpbmlib.so
+lib/libpdapi.so
+lib/libqmi.so
+lib/libqmiservices.so
+lib/libqueue.so
+lib/libwms.so
+lib/libwmsts.so
+lib/liboem_rapi.so
+lib/libpdsm_atl.so
+lib/libqc-opt.so
+lib/libqdi.so
+lib/libqdp.so
+lib/libuim.so
+
+## Audio
+lib/libaudioalsa.so
+
+## GPS
+lib/libcommondefs.so
+lib/librpc.so
+
+## Sensors
+lib/hw/sensors.default.so
+
+## EXTRA
+bin/netmgrd
+bin/port-bridge
+bin/thermald
+etc/media_profiles.xml
+etc/thermald.conf
+lib/libdsi_netctrl.so
+lib/libnetmgr.so
+lib/libv8.so

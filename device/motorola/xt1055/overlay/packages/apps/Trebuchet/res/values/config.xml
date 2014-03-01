@@ -1,0 +1,5 @@
+<resources>
+    <!-- Default cell count that scales properly (will be used as a reference for scaling when different counts are used) -->
+    <integer name="default_cell_count_x">5</integer>
+    <integer name="default_cell_count_y">5</integer>
+</resources>

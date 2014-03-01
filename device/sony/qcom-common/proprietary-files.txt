@@ -1,0 +1,12 @@
+lib/egl/eglsubAndroid.so
+lib/egl/libEGL_adreno200.so
+lib/egl/libGLESv1_CM_adreno200.so
+lib/egl/libGLESv2_adreno200.so
+lib/egl/libq3dtools_adreno200.so
+lib/libC2D2.so
+lib/libc2d2_a3xx.so
+lib/libgsl.so
+lib/libllvm-a3xx.so
+lib/libsc-a3xx.so
+vendor/firmware/a300_pfp.fw
+vendor/firmware/a300_pm4.fw

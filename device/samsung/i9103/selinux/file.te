@@ -1,0 +1,7 @@
+type firmware_camera, file_type;
+
+type restorecon_exec, exec_type, file_type;
+type setenforce_exec, exec_type, file_type;
+
+type cbd_exec, exec_type, file_type;
+

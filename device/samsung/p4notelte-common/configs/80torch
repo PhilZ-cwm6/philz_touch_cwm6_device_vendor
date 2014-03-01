@@ -1,0 +1,6 @@
+#!/system/bin/sh
+#
+# Fix permissions on rear flash for Torch
+#
+
+busybox chmod 0666 /sys/class/camera/rear/rear_flash

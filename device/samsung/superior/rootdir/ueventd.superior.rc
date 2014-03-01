@@ -1,0 +1,90 @@
+#for DSSCOMP
+/dev/dsscomp              0666   system     system
+/dev/tiler                0666   system     system
+
+#for SYSLINK
+/dev/rpmsg-omx0           0660   system     drmrpc
+/dev/rpmsg-omx1           0660   system     drmrpc
+/dev/rproc_user           0660   system     drmrpc
+/dev/tf_driver            0660   drmrpc     system
+/dev/tf_ctrl              0660   drmrpc     system
+
+#for Sensors
+/dev/mpu                  0660   system     system
+/dev/mpuirq               0660   system     system
+/dev/accelirq             0660   system     system
+/dev/compassirq           0660   system     system
+/dev/timerirq             0660   system     system
+/dev/i2c-4                0660   system     system
+
+#for HSPA RIL
+/dev/umts_boot0           0660   radio      radio
+/dev/umts_boot1           0660   radio      radio
+/dev/umts_ipc0            0660   radio      radio
+/dev/umts_rfs0            0660   radio      radio
+/dev/block/mmcblk0p7      0660   radio      radio
+/dev/umts_ramdump0        0660   radio      radio
+/dev/umts_router          0660   radio      system
+/dev/umts_csd             0660   radio      system
+
+#SISO Rohit change start
+#hdcp
+/dev/hdcp                 0664    root      root
+#SISO Rohit change end
+
+# used by RIL and GPS
+/dev/ttyGS0               0660    system    system
+
+#for LTE RIL
+/dev/cdma_boot0           0660    radio     radio
+/dev/lte_boot0            0660    radio     radio
+/dev/cdma_ipc0            0660    radio     radio
+/dev/lte_ipc0             0660    radio     radio
+/dev/cdma_rfs0            0660    radio     radio
+/dev/lte_rfs0             0660    radio     radio
+/dev/lte_spi              0660    radio     radio
+/dev/cdma_rmnet5          0660    radio     radio
+/dev/cdma_rmnet6          0660    radio     radio
+/dev/lte_rmnet4           0660    radio     radio
+/dev/ttyGS0               0660    radio     radio
+/dev/ttyGS1               0660    radio     radio
+/dev/block/mmcblk0p4      0660    radio     radio
+/dev/modem_br             0660    radio     radio
+/dev/cdma_ramdump0        0660    radio     radio
+/dev/lte_ramdump0         0660    radio     radio
+
+#For SGX
+/dev/pvrsrvkm             0666   system     system
+
+#For GCX
+/dev/gcioctl              0666   system     system
+
+#For fm radio
+/dev/fmradio              0660   system     audio
+
+#for Vibetonz
+/dev/tspdrv               0660   root       shell
+
+#for MTP Device
+/dev/usb_mtp_gadget       0660   system     system
+
+#for ION
+/dev/ion                  0777   root       root
+
+#for BT
+/dev/ttyO1                0600   bluetooth  bluetooth
+
+#for GPS
+/dev/ttyO0                0660   root       system
+
+#for NFC
+/dev/ttyO3                0600   nfc        nfc
+
+/dev/block/mmcblk0p4      0660   system     system
+/dev/diag                 0660   radio      radio
+# for usb printer
+/dev/usb/lp*           	  0660   system     usb
+# for usb medical device
+/dev/ttyUSB0 		  0666 	 system     system
+/dev/ttyUSB1 		  0666 	 system     system
+/dev/ttyUSB2 		  0666   system     system

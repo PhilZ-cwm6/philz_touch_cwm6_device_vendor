@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2010 T-Mobile USA, Inc.
+     Copyright (C) 2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Selector Temă</string>
+
+    <string name="menu_apply">Aplicaţi</string>
+    <string name="menu_uninstall">Dezinstalaţi</string>
+
+    <string name="theme_current">%s (actual)</string>
+    <string name="theme_change_dialog_title">Aplicare\u2026</string>
+    <string name="switching_to_theme">Comutare la <xliff:g id="theme">%s</xliff:g>\u2026</string>
+
+    <string name="dialog_theme_error_title">Eroare temă</string>
+    <string name="dialog_missing_host_density_msg">Ne pare rău, această temă nu este compatibilă cu dimensiunea ecranului dispozitivului.</string>
+    <string name="dialog_missing_theme_package_scope_msg">Această temă a fost compilată în mod necorespunzător şi nu poate fi aplicată. Vă rugăm raportaţi acest incident autorului temei.</string>
+    <string name="dialog_apply_anyway_btn">Se aplică oricum</string>
+</resources>

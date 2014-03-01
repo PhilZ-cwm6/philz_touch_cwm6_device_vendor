@@ -1,0 +1,102 @@
+#
+# system.prop for enrc2b
+#
+ro.opengles.version = 131072
+#
+
+#Common display settings
+ro.sf.lcd_density=320
+ro.hwui.text_cache_width=2048
+ro.hwui.text_cache_height=256
+
+# Addidional info for Settings/About/Hardware
+ro.device.chipset=nVidia Tegra AP37
+ro.device.cpu=1.7GHz quad-core
+ro.device.gpu=ULP GeForce
+ro.device.front_cam=1.6MP, 720p
+ro.device.rear_cam=8MP, 1080p
+ro.device.screen_res=720 x 1280 pixels, 4.7"
+
+#Performance and battery tweaks
+ro.ril.disable.power.collapse=1
+debug.performance.tuning=1
+video.accelerate.hw=1
+debug.sf.hw=1
+persist.sys.ui.hw=true
+ro.media.dec.jpeg.memcap=8000000
+ro.media.enc.jpeg.quality=100
+
+# RIL
+rild.libpath=/system/lib/libhtc_ril.so
+rild.libargs=-e wwan0
+ro.telephony.ril.v3=signalstrength,skipbrokendatacall
+modem.power.device=/sys/class/gpio/gpio32/value,0,1
+ro.ril.devicename=/dev/ttyACM1
+modem.powercontrol=disabled
+ro.ril.ecc.VODA-Africa-South=112,911,999
+ro.ril.ecc.HTC-GCC=999,112,997
+ro.ril.ecc.HTC-WWE=999
+ro.ril.ecc.HTC-Dutch=112
+ro.ril.ecc.HTC-SPA=112, 911
+ro.ril.ecc.HTC-FRA=112,911
+ro.ril.ecc.HTC-ITA=112,911
+ro.ril.ecc.HTC-EastEurope=112
+ro.ril.enable.a52.HTC-ITA=1
+ro.ril.enable.a53.HTC-ITA=1
+ro.ril.enable.a52=0
+ro.ril.enable.a53=1
+ro.ril.enable.dtm=0
+ro.ril.hsdpa.category=14
+ro.ril.hsupa.category=6
+ro.ril.hsxpa=4
+ro.ril.fast.dormancy.rule=1
+ro.ril.disable.fd.plmn.prefix=23402,23410,23411,23420,27202
+ro.ril.enable.managed.roaming=1
+ro.ril.enable.sdr=1
+ro.ril.enable.amr.wideband=1
+ro.ril.enable.r8fd=0
+ro.ril.disable.cpc=1
+ro.ril.fd.pre_r8_tout.scr_off=2
+ro.ril.fd.pre_r8_tout.scr_on=3
+ro.ril.fd.r8_tout.scr_off=0
+ro.ril.fd.r8_tout.scr_on=0
+ro.ril.imc.fdn=0
+ro.ril.imc.dtmclass=0
+ro.ril.imc.band=900,1800,1900,850
+ro.ril.imc.uband="UMTS_BAND_I","UMTS_BAND_II","UMTS_BAND_V","UMTS_BAND_VIII"
+ro.ril.imc.darp=1
+ro.ril.imc.enhanced.fdpch=1
+ro.ril.imc.fdpch=1
+ro.ril.imc.edpdch.pw.interpo=1
+ro.ril.imc.hspa.dtx.drx=1
+ro.ril.imc.uea2=0
+ro.ril.imc.uia2=0
+ro.ril.edpcch.pwr.boost=1
+ro.ril.hspa.mac.ehs=1
+ro.ril.enable.imc.feature=1
+ro.ril.projectname=enrc2b
+ro.ril.stkprof.param=FFFFFFFF7F1D00DFB703021F2200000083000000000040100000000000000000
+
+#Wi-Fi
+wifi.interface=wlan0
+wifi.supplicant_scan_interval=60
+
+#NFC
+debug.nfc.fw_download=true
+debug.nfc.se=true
+
+# For usb storage
+ro.usb_host = 1
+
+# Support HW reset dialog
+ro.product.hwreset = 1
+ro.product.hwreset.timer1 = 5
+ro.product.hwreset.timer2 = 8
+
+#HDMI
+ro.hdmi.enable=true
+# temporary fix for HDMI output, for videos it works now in correct landscape with this set
+persist.demo.hdmirotation=portrait
+
+#fw.power_user_switcher=true
+service.htc_ebdlogd.enable=1

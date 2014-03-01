@@ -1,0 +1,9 @@
+/dev/block/mmcblk0p15				/system		ext4	ro,barrier=1,data=ordered					wait
+/dev/block/mmcblk0p18				/cache		ext4	noatime,nosuid,nodev,barrier=1,data=ordered			wait
+/dev/block/mmcblk0p19				/data		ext4	noatime,nosuid,nodev,barrier=1,data=ordered,noauto_da_alloc	wait
+/dev/block/mmcblk0p12				/boot		emmc	defaults							defaults
+/dev/block/mmcblk0p13				/recovery	emmc	defaults							defaults
+/dev/block/mmcblk0p17				/cache		ext4	noatime,nosuid,nodev,barrier=1,data=ordered,noauto_da_alloc	wait
+/dev/block/mmcblk0p7				/persist	ext4	noatime,nosuid,nodev,barrier=1,data=ordered,noauto_da_alloc	wait
+/devices/platform/msm_sdcc.4/mmc_host/mmc2	auto		auto	defaults							voldmanaged=sdcard0:auto,noemulatedsd
+

@@ -1,0 +1,42 @@
+# system.prop for jewel
+#
+
+ro.sf.lcd_density=320
+
+# RIL properties
+ro.ril.enable.sdr=0
+ro.ril.set.mtusize=1422
+persist.rild.ril.ltedr=0
+persist.rild.ril.ltedrtable=max_retries=infinite,10000
+
+rild.libargs=-d /dev/smd0
+rild.libpath=/system/lib/libril-qc-qmi-1.so
+persist.radio.snapshot_enabled=1
+persist.radio.snapshot_timer=2
+persist.radio.use_nv_for_ehrpd=true
+persist.radio.always_send_plmn=true
+ro.telephony.default_network=8
+telephony.lteOnCdmaDevice=1
+ro.config.svlte1x=true
+ro.ril.svdo=true
+keyguard.no_require_sim=1
+ro.cdma.home.operator.numeric=310120
+ro.cdma.home.operator.alpha=Sprint
+gsm.sim.operator.alpha=Sprint
+gsm.sim.operator.numeric=310120
+gsm.sim.operator.iso-country=us
+gsm.operator.alpha=Sprint
+gsm.operator.numeric=310120
+gsm.operator.iso-country=us
+
+# NFC
+debug.nfc.fw_download=true
+debug.nfc.fw_boot_download=false
+debug.nfc.se=true
+ro.nfc.port=I2C
+
+# enable time services
+persist.timed.enable=true
+
+# UMS
+persist.sys.usb.config=mass_storage,adb

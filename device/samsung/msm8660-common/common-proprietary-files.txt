@@ -1,0 +1,135 @@
+#
+# This file lists all of the proprietary blobs that need to be
+# extracted from a stock device. The extract-files.sh script
+# parses this file and copies the blobs into the vendor and build
+# trees as needed.
+#
+# File format:
+#   - Comments lines start with a hash (#) character and will be
+#     ignore.
+#   - Blobs should be listed with their path relative to /system
+#     on the device.
+#   - A different destination path may be specified after a colon on
+#     the same line as the blob source path. Otherwise, the
+#     destination path with be the same as it was on the device.
+#   - Options for a particular blob are specified in a comment
+#     after the blob path.
+#
+# Blob options:
+#   - needed_for_build: the blob will also be copied into the obj
+#     directory for use in the build of other open source files.
+#   - optional: if the blob is not found, extraction will not abort.
+#     directory for use in the build of other open source files.
+#
+
+# Bins
+bin/mpdecision
+
+# Audio
+lib/libacdbloader.so     # needed_for_build
+lib/libacdbmapper.so     # needed_for_build
+lib/libaudcal.so
+lib/libaudioalsa.so      # needed_for_build
+lib/libaudioparsers.so
+
+# mmparser extended
+lib/libmmparser.so
+lib/libmmosal.so
+#lib/libDivxDrm.so
+
+# Graphics
+lib/egl/eglsubAndroid.so
+lib/egl/libEGL_adreno200.so
+lib/egl/libGLESv1_CM_adreno200.so
+lib/egl/libGLESv2_adreno200.so
+lib/egl/libq3dtools_adreno200.so
+lib/egl/libplayback_adreno200.so
+lib/egl/libGLESv2S3D_adreno200.so
+lib/libgsl.so
+lib/libC2D2.so
+lib/libc2d2_z180.so      # optional
+lib/libOpenCL.so
+lib/libOpenVG.so
+lib/libsc-a2xx.so
+
+# Radio
+bin/netmgrd
+bin/ks
+bin/qcks
+bin/sec-ril
+bin/qmiproxy
+bin/qmuxd
+bin/rmt_storage
+bin/rild
+lib/libsecril-client.so
+lib/libqmi.so
+lib/libqdi.so
+lib/libqdp.so
+lib/libqmiservices.so
+lib/libqueue.so
+lib/libril.so
+lib/libreference-ril.so
+lib/libril-qc-qmi-1.so
+lib/libril-qcril-hook-oem.so
+lib/libdsutils.so
+lib/libdsi_netctrl.so
+lib/libidl.so
+lib/libnetmgr.so
+lib/libqcci_legacy.so
+lib/libqmi_client_qmux.so
+lib/libomission_avoidance.so
+lib/libfactoryutil.so
+lib/libsecnativefeature.so
+
+# GPS
+lib/liboncrpc.so
+lib/libloc_api-rpc-qc.so
+lib/libcommondefs.so
+lib/librpc.so
+
+# Sensors
+lib/hw/sensors.MSM8660_SURF.so
+lib/libakm.so
+
+# Camera
+lib/hw/camera.msm8660.so
+lib/libmmjpeg.so
+lib/libgemini.so
+lib/libs3cjpeg.so
+lib/liboemcamera.so
+lib/libmmipl.so
+lib/libmmmpo.so
+lib/libmmstereo.so
+
+# General
+lib/libdiag.so
+lib/libqc-opt.so
+
+# Wi-Fi
+etc/wifi/bcmdhd_apsta.bin
+etc/wifi/nvram_net.txt
+etc/wifi/wpa_supplicant.conf
+etc/wifi/bcmdhd_p2p.bin
+etc/wifi/bcmdhd_sta.bin
+etc/wifi/bcmdhd_mfg.bin
+etc/wifi/nvram_mfg.txt
+
+# Firmware
+etc/firmware/dsps_fluid.b00
+etc/firmware/dsps_fluid.b01
+etc/firmware/dsps_fluid.b02
+etc/firmware/dsps_fluid.b03
+etc/firmware/dsps_fluid.mdt
+etc/firmware/leia_pfp_470.fw
+etc/firmware/leia_pm4_470.fw
+etc/firmware/vidc_1080p.fw
+etc/firmware/yamato_pfp.fw
+etc/firmware/yamato_pm4.fw
+
+# Thermald
+bin/thermald
+etc/thermald.conf
+lib/libdsm.so
+lib/libthermal_mitigation_fusion.so
+lib/libthermal_mitigation.so
+

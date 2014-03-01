@@ -1,0 +1,10 @@
+#
+# system.prop for superior
+#
+
+rild.libpath=/system/lib/libsec-ril.so
+rild.libargs=-d /dev/ttys0
+telephony.lteOnCdmaDevice=0
+ro.sf.lcd_density=320
+pm.sleep_mode=1
+ro.boot.selinux=0

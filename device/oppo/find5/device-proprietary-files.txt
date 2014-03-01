@@ -1,0 +1,13 @@
+# Camera
+lib/libchromatix_imx135_default_video.so
+lib/libchromatix_imx135_hfr_120fps.so
+lib/libchromatix_imx135_hfr_90fps.so
+lib/libchromatix_imx135_preview.so
+lib/libchromatix_imx135_video_hdr.so
+lib/libchromatix_imx135_zsl.so
+lib/libchromatix_s5k6a3yx_default_video.so
+lib/libchromatix_s5k6a3yx_preview.so
+lib/libchromatix_s5k6a3yx_video_hd.so
+lib/libchromatix_s5k6a3yx_zsl.so
+lib/libmorpho_photosolid.so
+

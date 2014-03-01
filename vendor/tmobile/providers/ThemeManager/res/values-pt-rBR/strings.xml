@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2010 T-Mobile USA, Inc.
+     Copyright (C) 2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Provedor de Temas</string>
+    <string name="permlab_access_DrmThemeResources">ler recursos de mídia protegidos por direitos digitais</string>
+    <string name="permdesc_access_DrmThemeResources">Permite uma aplicação ter acesso aos recursos de mídia dos Pacotes de Temas protegidos por direitos digitais.</string>
+    <string name="permlab_set_theme">Definir tema aplicado globalmente</string>
+    <string name="permdesc_set_theme" product="tablet">Permite uma aplicação à trocar o tema visual do seu tablet.</string>
+    <string name="permdesc_set_theme" product="default">Permite uma aplicação à trocar o tema visual do seu telefone.</string>
+</resources>

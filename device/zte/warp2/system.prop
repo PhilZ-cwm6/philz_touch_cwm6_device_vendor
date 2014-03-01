@@ -1,0 +1,165 @@
+#
+# system.prop for warp2
+#
+
+wifi.interface=wlan0
+wifi.supplicant_scan_interval=90
+wifi.supplicant_no_update_ctrl=true
+dalvik.vm.dexopt-data-only=1
+com.qc.hardware=true
+
+ro.ril.disable.power.collapse=0
+ro.telephony.ril_class=QualcommSharedRIL
+ro.telephony.ril.v3=subscriptionFromSource,skipCdmaSubcription,icccardstatus,qcomuiccstack
+ro.ril.def.preferred.network=4
+ro.telephony.default_network=4
+keyguard.no_require_sim=true
+rild.libpath=/system/lib/libril-qc-qmi-1.so
+ro.vendor.extension_library=/system/lib/libqc-opt.so
+ro.telephony.lteOnCDMADevice=0
+rild.libargs=-d /dev/smd0
+ro.cdma.subscribe_on_ruim_ready=true
+persist.radio.no_wait_for_card=1
+
+persist.rild.nitz_plmn=
+persist.rild.nitz_long_ons_0=
+persist.rild.nitz_long_ons_1=
+persist.rild.nitz_long_ons_2=
+persist.rild.nitz_long_ons_3=
+persist.rild.nitz_short_ons_0=
+persist.rild.nitz_short_ons_1=
+persist.rild.nitz_short_ons_2=
+persist.rild.nitz_short_ons_3=
+ril.subscription.types=NV,RUIM
+DEVICE_PROVISIONED=1
+
+ro.cdma.voicemail.number=mine
+ro.build.characteristics=cdma
+
+#device supports EHRPD
+ro.config.ehrpd=true
+
+hwui.render_dirty_regions=false
+hwui.disable_vsync=true
+hwui.print_config=choice
+debug.sf.hw=1
+debug.composition.type=gpu
+debug.overlayui.enable=0
+dev.pm.dyn_samplingrate=1
+video.accelerate.hw=1
+debug.performance.tuning=1
+windowsmgr.max_events_per_sec=150
+debug.mdpcomp.maxlayer=0
+debug.gr.swapinterval=0
+persist.sys.ui.hw=0
+debug.egl.hw=1
+ro.min.fling_velocity=8000
+ro.max.fling_velocity=12000
+persist.sys.use_dithering = 0
+
+#possible screen glitch fix
+debug.gr.numframebuffers=3
+
+ro.sf.lcd_density=240
+
+#usb
+persist.sys.usb.config=mtp,adb
+persist.sys.usbcharger.enable=1
+
+#system props for the MM modules
+
+media.stagefright.enable-player=true
+media.stagefright.enable-http=true
+media.stagefright.enable-fma2dp=false
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-scan=true
+ro.media.dec.aud.wma.enabled=1
+ro.media.dec.vid.wmv.enabled=1
+
+
+#
+# system props for the data modules
+#
+ro.use_data_netmgrd=true
+persist.data_netmgrd_nint=16
+persist.data_netmgrd_mtu=1428
+
+#
+# system props for the cne module
+#
+persist.cne.UseCne=vendor
+persist.cne.UseSwim=false
+persist.cne.bat.range.low.med=30
+persist.cne.bat.range.med.high=60
+persist.cne.loc.policy.op=/system/etc/OperatorPolicy.xml
+persist.cne.loc.policy.user=/system/etc/UserPolicy.xml
+persist.cne.bwbased.rat.sel=false
+persist.cne.snsr.based.rat.mgt=false
+persist.cne.bat.based.rat.mgt=false
+persist.cne.rat.acq.time.out=30000
+persist.cne.rat.acq.retry.tout=0
+persist.cne.sync.swim.mode=false
+persist.sys.hdmi.on=0
+ro.hdmi.enable=true
+
+#
+# system props for SD card emulation of emmc partition
+#
+ro.emmc.sdcard.partition=16
+
+#system props for time-services
+persist.timed.enable=true
+
+# System props for audio
+persist.audio.fluence.mode=endfire
+persist.audio.vr.enable=false
+
+#
+# system prop for opengles version
+#
+# 131072 is decimal for 0x20000 to report version 2
+ro.opengles.version=131072
+
+#
+# system prop for Bluetooth Auto connect for remote initated connections
+#
+ro.bluetooth.remote.autoconnect=true
+
+#
+# system prop for Bluetooth FTP profile
+#
+ro.qualcomm.bluetooth.ftp=true
+
+#
+# system prop for requesting Master role in incoming Bluetooth connection.
+#
+ro.bluetooth.request.master=true
+
+
+# System property for cabl
+
+
+#
+# System prop for sending transmit power request to RIL during WiFi hotspot on/off
+#
+ro.ril.transmitpower=true
+ro.ril.shutdown=true
+
+
+#
+# System prop for using landscape preview layout in camera
+#
+debug.camera.landscape=true
+
+# Carrier info
+ro.com.google.clientidbase.am=android-boost-us
+ro.com.google.clientidbase.yt=android-boost-us
+ro.com.google.clientidbase.ms=android-boost-us
+ro.cdma.home.operator.numeric=311870
+ro.cdma.home.operator.alpha=Boost Mobile
+
+ro.config.sec_storage=1
+
+## camera
+ro.product.camera=warp2
