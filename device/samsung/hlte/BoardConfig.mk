@@ -33,9 +33,9 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 
 # Kernel Configs
 #TARGET_KERNEL_SOURCE := kernel/samsung/hlte
-TARGET_PREBUILT_KERNEL := device/samsung/hlte-common/recovery/zImage-philz-kk
-TARGET_KERNEL_CONFIG := msm8974_sec_defconfig
-TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
+TARGET_PREBUILT_KERNEL := device/samsung/hlte/recovery/zImage-philz-kk
+#TARGET_KERNEL_CONFIG := msm8974_sec_defconfig
+#TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 
 # Kernel
 # PhilZ prebuilt to support KK bootloader
