@@ -112,6 +112,8 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16776704
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Custom Recovery
+# PhilZ needs init.rc to insmod HTC texfat.ko module + fix charger
+TARGET_RECOVERY_INITRC := device/htc/m7-common/rootdir/etc/init.philz-m7-common.rc
 ifeq ($(TARGET_DEVICE),m7spr)
 TARGET_RECOVERY_FSTAB := device/htc/m7-common/rootdir/etc/fstab.qcom.spr
 else
