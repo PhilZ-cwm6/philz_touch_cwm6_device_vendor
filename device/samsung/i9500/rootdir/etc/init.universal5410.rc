@@ -2,31 +2,19 @@ import init.universal5410.usb.rc
 import init.universal5410.wifi.rc
 
 on init
-    start watchdogd
-
-     # For Absolute Persistence Partition
-    mkdir /persdata 0755 system system
-    mkdir /persdata/absolute 0750 system system
-
-    wait /dev/block/mmcblk0p17
-    mount ext4 /dev/block/mmcblk0p17 /persdata/absolute nosuid nodev barrier=1
-    chown system system /persdata
-    chmod 0755 /persdata
-    chown system system /persdata/absolute
-    chmod 0750 /persdata/absolute
-
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
 
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
     mkdir /storage/sdcard1 0700 root root
+
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
     mkdir /storage/usbdisk 0700 root root
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
-    export SECONDARY_STORAGE /storage/sdcard1:/storage/usbdisk
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
+    export SECONDARY_STORAGE /storage/sdcard1:/storage/usbdisk
 
     # for backwards compatibility
     symlink /storage/emulated/legacy /sdcard
@@ -43,12 +31,11 @@ on init
     symlink /dev/block/mmcblk0p13 /dev/mbin0
     restorecon /dev/mbin0
 
-# Vibetonz
-    export VIBE_PIPE_PATH /dev/pipes
-    mkdir /dev/pipes 0771 shell shell
-    restorecon /dev/pipes
-
     symlink /dev/block/mmcblk0p8 /dev/block/param
+
+on fs
+    mount_all /fstab.universal5410
+    setprop ro.crypto.fuse_sdcard true
 
 on post-fs
     # Increase max readahead size to 256 KB
@@ -58,70 +45,29 @@ on post-fs
     chmod 0664 /sys/block/mmcblk0/bkops_en
 
 on post-fs-data
-    mkdir /data/media 0775 media_rw media_rw
-    chown media_rw media_rw /data/media
-
-# SA, System SW, SAMSUNG create log directory
-    mkdir /data/log 0775 system log
-    mkdir /data/anr 0775 system system
-    restorecon /data/log
-    restorecon /data/anr
-    chown system log /data/log
-    setprop vold.post_fs_data_done 1
-
-    chmod 0775 /data/log
-    chmod 0775 /data/anr
+    mkdir /data/media 0770 media_rw media_rw
 
     mkdir /data/misc/radio 0775 radio system
     mkdir /efs/imei 0775 radio system
 
-# Permissions for bluetooth
-    setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
-    chown bluetooth bluetooth ro.bt.bdaddr_path
-    chmod 0660 /sys/class/rfkill/rfkill0/state
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+# create data/gps for GPS daemon
+    mkdir /data/system/gps 771 gps system
 
-#[ SEC_MM_DRM
+# restore permissions for gps
+    mkdir /data/system 0775 system system
 
-    # DRM directory creation
-    mkdir /system/etc/security/.drm 0775
-    chown root root /system/etc/security/.drm
-    chmod 0775 /system/etc/security/.drm
-    restorecon /system/etc/security/.drm
-
-    # Added for Playready DRM Support
-    mkdir /data/data/.drm 0775
-    chown drm system /data/data/.drm
-    chmod 0775 /data/data/.drm
-    mkdir /data/data/.drm/.playready 0775
-    chown drm system /data/data/.drm/.playready
-    chmod 0775 /data/data/.drm/.playready
-
-    # Added drm folder to copy drm plugins
-    mkdir /system/lib/drm 0775
-    chown root root /system/lib/drm
-    chmod 0775 /system/lib/drm
-    restorecon /system/lib/drm
+# Broadcom NFC
+    mkdir /data/bcmnfc 0700 nfc nfc
+    mkdir /data/bcmnfc/param 0700 nfc nfc
 
     # DivX DRM
     mkdir /efs/.files 0775
-    mkdir /efs/.files/.dx1 0775
-    mkdir /efs/.files/.dm33 0775
-    mkdir /efs/.files/.mp301 0775
-    chown media system /efs/.files/.dx1
-    chown media system /efs/.files/.dm33
-    chown media system /efs/.files/.mp301
-    chmod 0775 /efs/.files/.dx1
-    chmod 0775 /efs/.files/.dm33
-    chmod 0775 /efs/.files/.mp301
+    mkdir /efs/.files/.dx1 0775 media system
+    mkdir /efs/.files/.dm33 0775 media system
+    mkdir /efs/.files/.mp301 0775 media system
 
 # SEAndroid Restore context for efs files
     restorecon_recursive /efs
-# SEAndroid: it should be set 1 to pass CTS
-    setsebool android_cts=1
-    setsebool debugfs=1
-#]
 
 #-----------------------------------------------------------------------
 
@@ -140,6 +86,13 @@ on boot
 
     # 4.3 needs this
     chmod 0644 /proc/cmdline
+
+# Permissions for bluetooth
+    setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
+    chown bluetooth bluetooth ro.bt.bdaddr_path
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
 
 # Permissions for TouchScreen
     chown system radio /sys/class/sec/tsp/cmd
@@ -283,14 +236,6 @@ on boot
     chown system radio /sys/class/host_notify/usb_otg/booster
     chmod 0660 /sys/class/host_notify/usb_otg/booster
 
-# Broadcom NFC
-    mkdir /data/bcmnfc
-    mkdir /data/bcmnfc/param
-    chmod 0700 /data/bcmnfc
-    chmod 0700 /data/bcmnfc/param
-    chown nfc nfc /data/bcmnfc
-    chown nfc nfc /data/bcmnfc/param
-
 # PMS DVFS
     chown radio system /sys/power/cpufreq_table
     chown radio system /sys/power/cpufreq_max_limit
@@ -377,22 +322,7 @@ on boot
     chmod 0660 /sys/class/android_usb/android0/terminal_version
     chown system system /sys/class/android_usb/android0/terminal_version
 
-# MTP device permission
-    chmod 0660 /dev/usb_mtp_gadget
-    chown system system /dev/usb_mtp_gadget
-
-    chown system system /sys/class/timed_output/vibrator/enable
-
-# Torch
-    chown system system /sys/class/leds/torch-sec1/brightness
-    chmod 0666 /sys/class/leds/torch-sec1/brightness
-
-on fs
-    mount_all /fstab.universal5410
-    setprop ro.crypto.fuse_sdcard true
-
-    chown radio system /efs
-    chmod 0771 /efs
+# Permissions
     chown radio radio /sys/devices/virtual/misc/multipdp/waketime
     chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
     chown radio system /sys/devices/virtual/misc/umts_dm0/dm_state
@@ -432,26 +362,21 @@ on fs
     chown media audio /sys/class/2mic/es325/sleep
     chown media audio /sys/class/2mic/es325/veq
 
-# create data/gps for GPS daemon
+# GPS
     chown root system /sys/class/sec/gps/GPS_PWR_EN/value
     chmod 0664 /sys/class/sec/gps/GPS_PWR_EN/value
-    mkdir /data/gps 771 system system
-    chown system system /data/gps
 
-# delete gps Factory file
-    rm /data/gps_started
-    rm /data/glonass_started
-    rm /data/smd_started
-    rm /data/sv_cno.info
+# MTP device permission
+    chmod 0660 /dev/usb_mtp_gadget
+    chown system system /dev/usb_mtp_gadget
 
-# create filesystem if necessary
-service setup_fs /system/bin/setup_fs \
-            /dev/block/mmcblk0p21 \
-            /dev/block/mmcblk0p19
-    class core
-    user root
-    group root
-    oneshot
+    chown system system /sys/class/timed_output/vibrator/enable
+
+# Torch
+    chown system system /sys/class/leds/torch-sec1/brightness
+    chmod 0666 /sys/class/leds/torch-sec1/brightness
+
+# Service begin here
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
@@ -467,7 +392,6 @@ service pvrsrvctl /system/vendor/bin/pvrsrvctl --start --no-module
 # virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
-    oneshot
 
 service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
@@ -482,28 +406,25 @@ service cpboot-daemon /system/bin/cbd -d -p 13
     user root
     group radio cache inet misc audio sdcard_rw log sdcard_r shell
 
-#sensorhubservice start
-service sensorhubservice /system/bin/sensorhubservice
-    class main
-    user system
-    group input
-
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     class main
     user gps
     group system inet net_raw
+    disabled
 
 service camera_id /system/bin/sh /system/etc/init.exynos.cam.sh
     class main
     user root
+    disabled
     oneshot
 
-# Vibetonz
-service immvibed /system/bin/immvibed
-    class core
-    user shell
-    group shell
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+    disabled
+    oneshot
+
+service iprenew_bt-pan /system/bin/dhcpcd -n
+    disabled
     oneshot
 
 # SA, System SW, SAMSUNG
@@ -512,6 +433,11 @@ service bugreport /system/bin/bugmailer.sh -v
     disabled
     oneshot
     keycodes 114 115 116
+
+on property:init.svc.bootanim=stopped
+    # start gpsd late to prevent it from changing /data/system
+    start gpsd
+    start camera_id
 
 on property:ro.dumpstate.dmesg=1
     write /proc/sys/kernel/dmesg_restrict 0

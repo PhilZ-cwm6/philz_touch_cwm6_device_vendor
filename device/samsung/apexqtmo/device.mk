@@ -42,7 +42,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.fluence.mode=none \
     persist.audio.handset.mic=analog \
     ro.qc.sdk.audio.fluencetype=none \
-    ro.qualcomm.bt.hci_transport=smd
+    ro.qualcomm.bt.hci_transport=smd \
+    telephony.lteOnGsmDevice=0 \
+    ro.telephony.default_network=0
 
 # Apexq scripts
 PRODUCT_PACKAGES += \

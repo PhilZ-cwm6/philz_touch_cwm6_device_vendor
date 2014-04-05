@@ -141,7 +141,6 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.egl.hw=1 \
     debug.sf.hw=1 \
-    persist.sys.ui.hw=true \
     debug.composition.type=dyn \
     persist.hwc.mdpcomp.enable=true \
     debug.mdpcomp.logs=0 \
@@ -216,9 +215,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
-    lpa.decode=false \
-    tunnel.decode=true \
-    tunnel.audiovideo.decode=true \
+    lpa.decode=true \
     qcom.hw.aac.encoder=true \
     af.resampler.quality=255 \
     persist.audio.lowlatency.rec=false

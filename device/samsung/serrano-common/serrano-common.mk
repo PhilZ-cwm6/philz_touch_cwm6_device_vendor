@@ -54,7 +54,6 @@ PRODUCT_COPY_FILES += \
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
-    $(LOCAL_PATH)/rootdir/init.carrier.rc:root/init.carrier.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
     $(LOCAL_PATH)/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
     $(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
@@ -95,8 +94,7 @@ PRODUCT_PACKAGES += \
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8960 \
-    gps.conf \
-    sap.conf
+    gps.conf
 
 # FM radio
 PRODUCT_PACKAGES += \
@@ -139,20 +137,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.hsxpa=1 \
     ro.ril.gprsclass=10 \
     persist.radio.add_power_save=1 \
-    persist.radio.dont_use_dsd=true \
     persist.radio.apm_sim_not_pwdn=1 \
+    ro.sf.lcd_density=240 \
     ro.ril.transmitpower=true \
     ro.warmboot.capability=1 \
     ro.qualcomm.cabl=0 \
+    debug.composition.type=c2d \
     ro.opengles.version=196608 \
-    af.resampler.quality=4 \
+    af.resampler.quality=255 \
     persist.audio.fluence.mode=endfire \
     persist.audio.vr.enable=false \
     persist.audio.handset.mic=digital \
     ro.use_data_netmgrd=true \
     lpa.decode=true \
     lpa.use-stagefright=true \
-    rild.libpath=/system/lib/libril-qc-qmi-1.so \
     persist.rild.nitz_plmn="" \
     persist.rild.nitz_long_ons_0="" \
     persist.rild.nitz_long_ons_1="" \
@@ -170,12 +168,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.enable_key_repeat=true \
     persist.debug.wfd.enable=1 \
     persist.sys.wfd.virtual=0 \
-    mm.enable.smoothstreaming=true \
     persist.timed.enable=true
 
-# For userdebug builds
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.secure=0
+# Enable Samsung EMS dial path
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.ril.v3=samsungEMSReq
 
 # call common msm8930
 $(call inherit-product, device/samsung/msm8930-common/msm8930.mk)

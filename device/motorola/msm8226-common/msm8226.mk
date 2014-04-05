@@ -87,7 +87,6 @@ PRODUCT_PACKAGES += \
 # Init scripts
 PRODUCT_PACKAGES += \
     init.mmi.boot.sh \
-    init.mmi.radio.sh \
     init.mmi.rc \
     init.mmi.touch.sh \
     init.qcom.post_boot.sh \
@@ -159,14 +158,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.fuse_sdcard=true \
     ro.crypto.fuse_sdcard=true \
     ro.nfc.port=I2C \
-    ro.cwm.forbid_format="/fsg,/firmware,/persist,/modem,/boot"
+    ro.cwm.forbid_format="/fsg,/firmware,/persist,/boot"
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
-    rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
+    rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so \
     persist.radio.msgtunnel.start=false \
     persist.sys.ssr.restart_level=3 \
-    persist.sys.qc.sub.rdump.on=1
+    persist.sys.qc.sub.rdump.on=1 \
+    ro.telephony.default_network=7 \
+    telephony.lteOnCdmaDevice=0 \
+    persist.radio.no_wait_for_card=1 \
+    persist.radio.dfr_mode_set=1
 
 # Opengles version 3
 PRODUCT_PROPERTY_OVERRIDES += \

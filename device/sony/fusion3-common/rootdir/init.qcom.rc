@@ -75,11 +75,11 @@ on fs
     restorecon /data/etc/wlan_macaddr3
     restorecon /data/misc/audio/mbhc.bin
     restorecon /data/misc/audio/wcd9310_anc.bin
-    restorecon /data/qcks/acdb.bin
-    restorecon /data/qcks/efs1.bin
-    restorecon /data/qcks/efs2.bin
-    restorecon /data/qcks/efs3.bin
-    restorecon /data/qcks/ta.bin
+    restorecon /cache/qcks/acdb.bin
+    restorecon /cache/qcks/efs1.bin
+    restorecon /cache/qcks/efs2.bin
+    restorecon /cache/qcks/efs3.bin
+    restorecon /cache/qcks/ta.bin
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -269,7 +269,7 @@ on post-fs-data
     mkdir /data/audio 0770 media audio
 
     # kickstart
-    mkdir /data/qcks 0770 system system
+    mkdir /cache/qcks 0770 system system
     chown system /dev/block/platform/msm_sdcc.1/by-name
 
     # Camera
@@ -494,7 +494,7 @@ on property:bluetooth.hciattach=false
 
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/bin/qmuxd
-    class main
+    class late_start
     user radio
     group radio audio bluetooth gps qcom_diag net_bt_stack
     disabled
@@ -518,7 +518,7 @@ service tad /sbin/tad_static /dev/block/mmcblk0 1,16
 # QMI_SYS_EVENT_MODEM_OUT_OF_SERVICE_IND is not sending if qmuxd is terminated during decryption,
 # so, ta_qmi_client was not notified that connection to the TA Service on MDM is lost.
 service ta_qmi_client /system/bin/ta_qmi_client
-    class main
+    class late_start
     user root
 
 service updatemiscta /system/bin/updatemiscta
@@ -527,10 +527,10 @@ service updatemiscta /system/bin/updatemiscta
     oneshot
 
 service netmgrd /system/bin/netmgrd
-    class main
+    class late_start
     disabled
 
-service kickstart /system/bin/qcks l -r /data/tombstones/mdm/
+service kickstart /system/bin/qcks l -r /data/tombstones/mdm/ -e /cache/qcks/
     class core
     user system
     group system radio

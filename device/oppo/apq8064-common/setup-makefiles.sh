@@ -170,7 +170,11 @@ DEVICE_PACKAGE_OVERLAYS += vendor/$VENDOR/$DEVICE/overlay
 PRODUCT_PACKAGES += \\
     libtime_genoff \\
     com.qualcomm.location \\
-    PPPreference
+    OppoNvProcess \\
+    OppoRadioShutdown \\
+    PPPreference \\
+    qcrilmsgtunnel \\
+    QuickBoot
 
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 EOF
@@ -236,6 +240,16 @@ LOCAL_CERTIFICATE := platform
 include \$(BUILD_PREBUILT)
 
 include \$(CLEAR_VARS)
+LOCAL_MODULE := QuickBoot
+LOCAL_MODULE_OWNER := oppo
+LOCAL_SRC_FILES := proprietary/app/QuickBoot.apk
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_CERTIFICATE := platform
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
 LOCAL_MODULE := com.qualcomm.location
 LOCAL_MODULE_OWNER := oppo
 LOCAL_SRC_FILES := proprietary/app/com.qualcomm.location.apk
@@ -243,6 +257,36 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_CERTIFICATE := platform
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := OppoNvProcess
+LOCAL_MODULE_OWNER := oppo
+LOCAL_SRC_FILES := proprietary/app/\$(LOCAL_MODULE).apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_TAGS := optional
+LOCAL_CERTIFICATE := platform
+LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := OppoRadioShutdown
+LOCAL_MODULE_OWNER := oppo
+LOCAL_SRC_FILES := proprietary/app/\$(LOCAL_MODULE).apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_TAGS := optional
+LOCAL_CERTIFICATE := platform
+LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := qcrilmsgtunnel
+LOCAL_MODULE_OWNER := oppo
+LOCAL_SRC_FILES := proprietary/app/\$(LOCAL_MODULE).apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_TAGS := optional
+LOCAL_CERTIFICATE := platform
+LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
 include \$(BUILD_PREBUILT)
 
 endif

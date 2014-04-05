@@ -19,5 +19,7 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="flashDevice">/sys/devices/virtual/camera/rear/rear_flash</string>
+    <integer name="valueHigh">2</integer>
+    <bool name="hasHighBrightness">true</bool>
 </resources>
 

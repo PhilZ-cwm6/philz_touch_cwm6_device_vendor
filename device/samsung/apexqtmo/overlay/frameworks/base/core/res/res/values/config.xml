@@ -34,4 +34,6 @@
     <!-- True will enable the screen-off animation. -->
     <bool name="config_screenOffAnimation">false</bool>
 
+    <bool name="config_enableWifiDisplay">true</bool>
+
 </resources>

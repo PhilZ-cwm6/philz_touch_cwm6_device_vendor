@@ -92,6 +92,9 @@ TARGET_DISPLAY_INSECURE_MM_HEAP := true
 # Use retire fence from MDP driver
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
 
+# Use CM PowerHAL
+TARGET_USES_CM_POWERHAL := true
+
 # SELinux
 BOARD_SEPOLICY_DIRS += \
     device/samsung/msm8660-common/sepolicy

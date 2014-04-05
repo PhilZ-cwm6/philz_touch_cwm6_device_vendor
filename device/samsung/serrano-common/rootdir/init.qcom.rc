@@ -43,7 +43,7 @@ on init
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
-    export SECONDARY_STORAGE /storage/sdcard1:/storage/usbdisk
+    export SECONDARY_STORAGE /storage/sdcard1
 
     # Support legacy paths
     symlink /storage/emulated/legacy /sdcard
@@ -91,6 +91,20 @@ on boot
     chmod 0755 /system/bin/ip
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
+
+    # Create symlink for fb1 as HDMI
+    symlink /dev/graphics/fb1 /dev/graphics/hdmi
+
+    # Setup permissions for fb1 related nodes
+    chown system graphics /sys/class/graphics/fb1/hpd
+    chmod 0664 /sys/devices/virtual/graphics/fb1/hpd
+    chmod 0664 /sys/devices/virtual/graphics/fb1/video_mode
+    chmod 0664 /sys/devices/virtual/graphics/fb1/format_3d
+    chown system graphics /sys/class/graphics/fb1/vscr_info
+    chmod 0664 /sys/devices/virtual/graphics/fb1/vscr_info
+
+    # Change owner and group for media server and surface flinger
+    chown system system /sys/devices/virtual/graphics/fb1/format_3d
 
     # Change permissions for fps_level nodes
     chown system graphics /sys/class/graphics/fb0/msm_fb_fps_level

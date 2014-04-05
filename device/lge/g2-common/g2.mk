@@ -103,9 +103,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=480 \
-    ro.opengles.version=196608 \
-    ro.loki_enabled=1
+        ro.sf.lcd_density=480 \
+	ro.opengles.version=196608
 
 # Audio Configuration
 PRODUCT_PROPERTY_OVERRIDES += \

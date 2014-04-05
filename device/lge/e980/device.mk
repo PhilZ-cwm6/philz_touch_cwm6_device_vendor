@@ -74,8 +74,7 @@ PRODUCT_COPT_FILES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.default_network=9 \
-	telephony.lteOnGsmDevice=1 \
-	ro.loki_enabled=1
+	telephony.lteOnGsmDevice=1
 
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)

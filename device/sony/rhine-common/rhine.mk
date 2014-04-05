@@ -54,8 +54,7 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/system/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
-    $(COMMON_PATH)/rootdir/fstab.qcom:recovery/root/fstab.qcom
+    $(COMMON_PATH)/rootdir/fstab.qcom:root/fstab.qcom
 
 # Wifi config and firmware
 PRODUCT_COPY_FILES += \
@@ -220,6 +219,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_small_cache_height=1024 \
     ro.hwui.text_large_cache_width=2048 \
     ro.hwui.text_large_cache_height=1024
+
+# Touchscreen
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.input.noresample=1
 
 # WFD
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -27,7 +27,6 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     init.crda.sh \
     init.qcom.bt.sh \
-    init.qcom.usb.sh \
     init.qcom.wifi.sh \
     init.bbv.sh
 
@@ -86,10 +85,6 @@ PRODUCT_PACKAGES += \
     libgenlock \
     liboverlay \
     memtrack.msm8960
-
-# Keyhandler
-PRODUCT_PACKAGES += \
-    ConfigPanel
 
 # Keystore
 PRODUCT_PACKAGES += \
@@ -238,3 +233,6 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/oppo/apq8064-common/apq8064-common-vendor.mk)
+
+# Inherit from oppo-common
+$(call inherit-product, device/oppo/common/common.mk)

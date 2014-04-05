@@ -57,7 +57,7 @@ camera_module_t HAL_MODULE_INFO_SYM = {
          version_major: 1,
          version_minor: 0,
          id: CAMERA_HARDWARE_MODULE_ID,
-         name: "d2-common Camera Wrapper",
+         name: "Samsung msm8960 Camera Wrapper",
          author: "The CyanogenMod Project",
          methods: &camera_module_methods,
          dso: NULL, /* remove compilation warnings */
@@ -119,6 +119,9 @@ static char * camera_fixup_getparams(int id, const char * settings)
     params.remove(android::CameraParameters::KEY_SUPPORTED_VIDEO_SIZES);
     params.remove(android::CameraParameters::KEY_PREFERRED_PREVIEW_SIZE_FOR_VIDEO);
 #endif
+#ifdef VIDEO_PREVIEW_ALWAYS_MAX
+    params.set(android::CameraParameters::KEY_PREFERRED_PREVIEW_SIZE_FOR_VIDEO, "1920x1080");
+#endif
 
 #ifdef DISABLE_FACE_DETECTION
 #ifndef DISABLE_FACE_DETECTION_BOTH_CAMERAS
@@ -127,6 +130,8 @@ static char * camera_fixup_getparams(int id, const char * settings)
 #endif
         params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
         params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
+        params.set(android::CameraParameters::KEY_FACE_DETECTION, "off");
+        params.set(android::CameraParameters::KEY_SUPPORTED_FACE_DETECTION, "off");
 #ifndef DISABLE_FACE_DETECTION_BOTH_CAMERAS
     }
 #endif
@@ -179,6 +184,8 @@ char * camera_fixup_setparams(struct camera_device * device, const char * settin
 #endif
         params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
         params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
+        params.set(android::CameraParameters::KEY_FACE_DETECTION, "off");
+        params.set(android::CameraParameters::KEY_SUPPORTED_FACE_DETECTION, "off");
 #ifndef DISABLE_FACE_DETECTION_BOTH_CAMERAS
     }
 #endif
@@ -376,19 +383,23 @@ int camera_auto_focus(struct camera_device * device)
 
 int camera_cancel_auto_focus(struct camera_device * device)
 {
+    int ret = 0;
+
     ALOGV("%s", __FUNCTION__);
     ALOGV("%s->%08X->%08X", __FUNCTION__, (uintptr_t)device, (uintptr_t)(((wrapper_camera_device_t*)device)->vendor));
 
     if(!device)
         return -EINVAL;
 
-    /* APEXQ/D2/EXPRESS: Calling cancel_auto_focus causes the camera to crash for unknown reasons. Disabling
-     * it has no adverse effect. Return 0 */
-#ifdef DISABLE_AUTOFOCUS
-    return 0;
-#else
-    return VENDOR_CALL(device, cancel_auto_focus);
+    /* APEXQ/EXPRESS: Calling cancel_auto_focus causes the camera to crash for unknown reasons.
+     * Disabling it has no adverse effect. For others, only call cancel_auto_focus when the
+     * preview is enabled. This is needed so some 3rd party camera apps don't lock up. */
+#ifndef DISABLE_AUTOFOCUS
+    if (camera_preview_enabled(device))
+        ret = VENDOR_CALL(device, cancel_auto_focus);
 #endif
+
+    return ret;
 }
 
 int camera_take_picture(struct camera_device * device)

@@ -103,13 +103,6 @@
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
-    <!-- Indicate whether to allow the device to suspend when the screen is off
-         due to the proximity sensor.  This resource should only be set to true
-         if the sensor HAL correctly handles the proximity sensor as a wake-up source.
-         Otherwise, the device may fail to wake out of suspend reliably.
-         The default is false. -->
-    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
-
     <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
@@ -213,9 +206,6 @@
     <!-- The restoring is handled by modem if it is true-->
     <bool name="skip_restoring_network_selection">true</bool>
 
-    <!-- The VoiceMail default value is displayed to my own number if it is true -->
-    <bool name="config_telephony_use_own_number_for_voicemail">true</bool>
-
     <bool name="config_enableWifiDisplay">true</bool>
 
     <!-- Set to true if the wifi display supports compositing content stored
@@ -252,4 +242,11 @@
 
     <!-- Device supports LED flashlight -->
     <bool name="config_enableTorch">true</bool>
+
+    <!-- Flag indicating whether the RIL_REQUEST_SEND_SMS_EXPECT_MORE
+         API should be used or not. The usage of the API is added
+         by CodeAurora and may not be supported by certain RIL.
+
+         The default value is false which represents AOSP behavior. -->
+    <bool name="config_smsUseExpectMore">true</bool>
 </resources>

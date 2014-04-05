@@ -25,16 +25,17 @@
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/serrano-common/include
 
-# For backwards compatibility with camera blobs
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
-
 # Kernel
 BOARD_KERNEL_CMDLINE         := androidboot.hardware=qcom androidboot.selinux=permissive user_debug=31 zcache
 BOARD_KERNEL_BASE            := 0x80200000
 BOARD_MKBOOTIMG_ARGS         := --ramdisk_offset 0x02000000
 BOARD_KERNEL_PAGESIZE        := 2048
 TARGET_KERNEL_SOURCE         := kernel/samsung/msm8930-common
+ifneq ($(filter serranoltespr,$(TARGET_DEVICE)),)
+TARGET_KERNEL_CONFIG         := cyanogen_serrano_usa_defconfig
+else
 TARGET_KERNEL_CONFIG         := cyanogen_serrano_defconfig
+endif
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
@@ -82,6 +83,7 @@ QCOM_FM_ENABLED := true
 BOARD_USES_SEPERATED_FM := true
 
 # Camera
+COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 TARGET_NEED_CAMERA_ZSL := true
 TARGET_NEED_FFC_PICTURE_FIXUP := true
 
