@@ -1,0 +1,19 @@
+# Android fstab file.
+#<src>	<mnt_point>	<type>	<mnt_flags>	<fs_mgr_flags>
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+/dev/block/mmcblk0p42                           /boot           emmc    defaults                                                                    defaults
+/dev/block/mmcblk0p43                           /recovery       emmc    defaults                                                                    defaults
+/dev/block/mmcblk0p45                           /system         ext4    ro,seclabel,noatime,data=ordered                                            wait
+/dev/block/platform/msm_sdcc.1/by-name/userdata /data           ext4    rw,seclabel,nosuid,nodev,relatime,discard,noauto_da_alloc,data=ordered      wait,check
+/dev/block/mmcblk0p46                           /cache          ext4    rw,seclabel,nosuid,nodev,relatime,data=ordered                              wait,check 
+/dev/block/mmcblk0p39                           /devlog         ext4    rw,seclabel,nosuid,nodev,relatime,errors=continue,data=ordered              wait
+/dev/block/mmcblk0p27                           /fataldevlog    ext4    rw,seclabel,nosuid,nodev,relatime,errors=continue,data=ordered              wait 
+/dev/block/platform/msm_sdcc.1/by-name/radio    /firmware/radio vfat    ro,relatime,uid=1000,gid=1000,fmask=0337,dmask=0227,codepage=cp437,iocharset=iso8859-1,shortname=lower,errors=remount-ro wait
+/dev/block/platform/msm_sdcc.1/by-name/adsp     /firmware/adsp  vfat    ro,relatime,uid=1000,gid=1000,fmask=0337,dmask=0227,codepage=cp437,iocharset=iso8859-1,shortname=lower,errors=remount-ro wait
+/dev/block/platform/msm_sdcc.1/by-name/wcnss    /firmware/wcnss vfat    ro,relatime,uid=1000,gid=1000,fmask=0337,dmask=0227,codepage=cp437,iocharset=iso8859-1,shortname=lower,errors=remount-ro wait
+/dev/block/mmcblk0p22                           /custdata       ext4    rw,seclabel,nosuid,nodev,relatime,data=ordered defaults
+
+/devices/msm_sdcc.2/mmc_host  auto    auto    defaults    voldmanaged=sdcard1:auto
+/devices/platform/xhci-hcd    auto    auto    defaults    voldmanaged=usb:auto
