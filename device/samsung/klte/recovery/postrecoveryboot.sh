@@ -9,7 +9,3 @@
 # 4: download_end
 
 echo -n -e '\x03\x00\x00\x00' > /dev/block/platform/msm_sdcc.1/by-name/param
-
-mount /dev/block/platform/msm_sdcc.1/by-name/system /system
-/system/bin/toolbox setenforce permissive
-umount /system

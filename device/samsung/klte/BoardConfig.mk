@@ -51,7 +51,7 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 #TARGET_KERNEL_CONFIG := msm8974_sec_defconfig
 #TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 
-TARGET_PREBUILT_KERNEL := device/samsung/klte/recovery/zImage-G900FXXU1ANCB
+TARGET_PREBUILT_KERNEL := device/samsung/klte/recovery/zImage-philz-v1
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
