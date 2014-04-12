@@ -112,10 +112,13 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 # Assert
 TARGET_OTA_ASSERT_DEVICE := kltexx,kltespr,kltetmo,SM-G900T,kltecan,klteatt,kltevzw,klte
 
-TARGET_KERNEL_VARIANT_CONFIG := msm8974pro_sec_klte_eur_defconfig
-
 # PowerHAL extension
 TARGET_POWERHAL_SET_INTERACTIVE_EXT := device/samsung/klte/power/power_ext.c
+
+# Vold
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+BOARD_VOLD_MAX_PARTITIONS := 28
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 # The "new" GPS is really the old GPS, override it.
 BOARD_HAVE_NEW_QC_GPS :=
