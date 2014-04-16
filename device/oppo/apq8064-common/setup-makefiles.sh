@@ -173,8 +173,7 @@ PRODUCT_PACKAGES += \\
     OppoNvProcess \\
     OppoRadioShutdown \\
     PPPreference \\
-    qcrilmsgtunnel \\
-    QuickBoot
+    qcrilmsgtunnel
 
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 EOF
@@ -218,7 +217,7 @@ LOCAL_PATH := \$(call my-dir)
 
 ifeq (\$(BOARD_VENDOR),oppo)
 ifeq (\$(TARGET_BOARD_PLATFORM),msm8960)
-ifeq (\$(QC_PROP_ROOT),)
+ifeq (\$(QCPATH),)
 
 include \$(CLEAR_VARS)
 LOCAL_MODULE := libtime_genoff

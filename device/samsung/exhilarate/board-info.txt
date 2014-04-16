@@ -1,1 +1,0 @@
-require version-baseband=I577:UCLH3|I577:UCAMK1

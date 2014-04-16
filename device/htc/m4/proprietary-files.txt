@@ -1,0 +1,154 @@
+# Executables
+bin/akmd
+bin/charging
+bin/mm-qcamera-daemon
+bin/mpdecision
+bin/netmgrd
+bin/qmuxd
+bin/rmt_storage
+bin/thermald
+
+# Configuration files
+etc/agps_rm
+
+# Bluetooth
+etc/firmware/BCM4334B0_002.001.013.0942.0949.hcd
+
+# Adreno
+etc/firmware/a300_pfp.fw
+etc/firmware/a300_pm4.fw
+etc/firmware/vidc.b00
+etc/firmware/vidc.b01
+etc/firmware/vidc.b02
+etc/firmware/vidc.b03
+etc/firmware/vidc.mdt
+etc/firmware/vidc_1080p.fw
+vendor/lib/egl/eglsubAndroid.so
+vendor/lib/egl/libEGL_adreno.so
+vendor/lib/egl/libGLESv1_CM_adreno.so
+vendor/lib/egl/libGLESv2S3D_adreno.so
+vendor/lib/egl/libGLESv2_adreno.so
+vendor/lib/egl/libq3dtools_adreno.so
+vendor/lib/libadreno_utils.so
+vendor/lib/libc2d2_a3xx.so
+vendor/lib/libc2d2_z180.so
+vendor/lib/libC2D2.so
+vendor/lib/libCB.so
+vendor/lib/libgsl.so
+vendor/lib/libllvm-a3xx.so
+vendor/lib/libllvm-arm.so
+vendor/lib/libOpenCL.so
+vendor/lib/libOpenVG.so
+vendor/lib/libsc-a2xx.so
+vendor/lib/libsc-a3xx.so
+
+# Audio
+lib/libacdbloader.so
+lib/libaudcal.so
+lib/libcsd-client.so
+
+# Camera
+etc/firmware/ILP0100_IPM_Code_out.bin
+etc/firmware/ILP0100_IPM_Data_out.bin
+etc/firmware/lscbuffer_rev2.bin
+lib/hw/camera.vendor.msm8960.so
+lib/libBeautyChat.so
+lib/libcameraasd.so
+lib/libcameraface.so
+lib/libcamerapp.so
+lib/libcam_oem_plugin.so
+lib/libchromatix_s5k6a2ya_default_video.so
+lib/libchromatix_s5k6a2ya_hdr.so
+lib/libchromatix_s5k6a2ya_hfr.so
+lib/libchromatix_s5k6a2ya_preview.so
+lib/libchromatix_s5k6a2ya_zsl.so
+lib/libchromatix_ov4688_default_video.so
+lib/libchromatix_ov4688_hdr.so
+lib/libchromatix_ov4688_hfr.so
+lib/libchromatix_ov4688_hfr_60fps.so
+lib/libchromatix_ov4688_night.so
+lib/libchromatix_ov4688_preview.so
+lib/libchromatix_ov4688_video_hdr.so
+lib/libchromatix_ov4688_zoe.so
+lib/libchromatix_ov4688_zsl.so
+lib/libgemini.so
+lib/libhtccamera_yushaniiproc.so
+lib/libHTC_DIS.so
+lib/libimage-jpeg-dec-omx-comp.so
+lib/libimage-jpeg-enc-omx-comp.so
+lib/libimage-omx-common.so
+lib/libmmcamera_aec.so
+lib/libmmcamera_faceproc.so
+lib/libmmcamera_frameproc.so
+lib/libmmcamera_hdr_lib.so
+lib/libmmcamera_image_stab.so
+lib/libmmcamera_interface2.so
+lib/libmmcamera_rawchipproc.so
+lib/libmmcamera_rubik.so
+lib/libmmcamera_statsproc31.so
+lib/libmmcamera_wavelet_lib.so
+lib/libmmipl.so
+lib/libmmjpeg.so
+lib/libmmstillomx.so
+lib/liboemcamera.so
+lib/libposteffect.so
+
+# GPS
+lib/libgeofence.so
+lib/libloc_api_v02.so
+
+# Media libraries
+lib/libI420colorconvert.so
+lib/libmm-color-convertor.so
+
+# QMI
+lib/libdiag.so
+lib/libdsi_netctrl.so
+lib/libdsutils.so
+lib/libidl.so
+lib/libqcci_legacy.so
+lib/libqdi.so
+lib/libqdp.so
+lib/libqmi.so
+lib/libqmi_cci.so
+lib/libqmi_client_qmux.so
+lib/libqmi_common_so.so
+lib/libqmi_csi.so
+lib/libqmi_encdec.so
+lib/libqmiservices.so
+
+# Radio
+lib/libnetmgr.so
+lib/libqc-opt.so
+lib/libril-qc-qmi-1.so
+lib/libril-qcril-hook-oem.so
+
+# Sensors
+lib/hw/sensors.msm8960.so
+lib/libimu.so
+lib/libmllite.so
+lib/libmlplatform.so
+lib/libmpl.so
+lib/libmpl_jni.so
+
+# TrustZone
+etc/firmware/hcheck.b00
+etc/firmware/hcheck.b01
+etc/firmware/hcheck.b02
+etc/firmware/hcheck.b03
+etc/firmware/hcheck.mdt
+etc/firmware/tzapps.b00
+etc/firmware/tzapps.b01
+etc/firmware/tzapps.b02
+etc/firmware/tzapps.b03
+etc/firmware/tzapps.mdt
+
+# Widevine
+lib/libQSEEComAPI.so
+vendor/lib/libwvm.so
+vendor/lib/libWVStreamControlAPI_L1.so
+
+# Wifi
+etc/firmware/fw_bcm4334.bin
+etc/firmware/fw_bcm4334_apsta.bin
+etc/firmware/fw_bcm4334_p2p.bin

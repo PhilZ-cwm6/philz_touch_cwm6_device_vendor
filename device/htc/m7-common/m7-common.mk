@@ -49,9 +49,6 @@ PRODUCT_PACKAGES += \
     battery_fail.png \
     battery_full.png
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/extra.fstab:recovery/root/etc/extra.fstab
-
 # QC thermald config
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
 
@@ -116,6 +113,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
+
+# Keystore
+PRODUCT_PACKAGES += \
+    keystore.msm8960
 
 # NFC
 PRODUCT_PACKAGES += \

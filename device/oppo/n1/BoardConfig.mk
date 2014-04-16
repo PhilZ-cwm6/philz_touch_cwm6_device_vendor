@@ -40,7 +40,5 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 3221209088  # 3221209088 - 16384 for crypt
 
 # TARGET_BOOTIMG_SIGNED := true
 
-TARGET_RELEASETOOLS_EXTENSIONS := device/oppo/n1
-
 # inherit from the proprietary version
 -include vendor/oppo/n1/BoardConfigVendor.mk

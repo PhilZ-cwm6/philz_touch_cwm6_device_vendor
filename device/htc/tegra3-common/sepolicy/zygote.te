@@ -1,3 +1,0 @@
-# Write to app data.
-allow zygote app_data_file:dir rw_dir_perms;
-allow zygote app_data_file:file create_file_perms;

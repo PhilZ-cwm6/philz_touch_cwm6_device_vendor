@@ -1,0 +1,7 @@
+#
+# system.prop for lt03wifiue
+#
+
+ro.sf.lcd_density=320
+rild.libargs=-d /dev/ttyS0
+

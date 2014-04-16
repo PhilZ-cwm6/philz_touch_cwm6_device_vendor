@@ -58,11 +58,10 @@ TARGET_USES_QCOM_BSP := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
 
 # Audio
-BOARD_USES_CUSTOM_AUDIO_PLATFORM_PATH := device/motorola/msm8226-common/audio
 AUDIO_FEATURE_DISABLED_FM :=
 AUDIO_FEATURE_DISABLED_SSR := true
 BOARD_HAVE_QCOM_FM := true
-AUDIO_FEATURE_DISABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_DISABLED_ANC_HEADSET := true
 
 # Graphics
 BOARD_EGL_CFG := $(LOCAL_PATH)/config/egl.cfg
@@ -71,8 +70,8 @@ TARGET_QCOM_DISPLAY_VARIANT := caf-new
 
 TARGET_QCOM_MEDIA_VARIANT := caf-new
 
-# Use stock power hal
-TARGET_USES_CM_POWERHAL :=
+# Use qcom power hal
+TARGET_POWERHAL_VARIANT := qcom
 
 # Hardware tunables framework
 BOARD_HARDWARE_CLASS := device/motorola/msm8226-common/cmhw/

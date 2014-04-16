@@ -46,7 +46,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01808000
 TARGET_EXFAT_MODULE := device/htc/m7-common/recovery/verizon/texfat.ko
 else
-# m7ul, m7att, m7tmo
+# m7 GSM unified (m7ul, m7att, m7tmo)
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01808000
 TARGET_PREBUILT_KERNEL := device/htc/m7-common/recovery/kernel-stock_FW_4.19.401.8
 TARGET_EXFAT_MODULE := device/htc/m7-common/recovery/ko_modules/texfat.ko
