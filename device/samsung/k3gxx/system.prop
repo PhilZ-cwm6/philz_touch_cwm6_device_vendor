@@ -1,0 +1,7 @@
+#
+# system.prop for k3gxx
+#
+
+ro.sf.lcd_density=480
+rild.libargs=-d /dev/ttyS0
+

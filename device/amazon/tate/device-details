@@ -1,0 +1,9 @@
+MAX44007 --ambient light sensor
+atmel_mxt_ts --touch screen sensor
+bq27541 --battery management drirver
+lp855x  --backlight Driver
+mpu6050B1 --memory sensor
+smb347 --battery charger
+tmp103_temp_sensor -- temp sensor
+twl
+wm8962 --stereo CODEC driver

@@ -1,0 +1,13 @@
+# SGX Bins
+vendor/lib/egl/libEGL_POWERVR_SGX544_112.so
+vendor/lib/egl/libGLESv1_CM_POWERVR_SGX544_112.so
+vendor/lib/egl/libGLESv2_POWERVR_SGX544_112.so
+vendor/lib/libglslcompiler_SGX544_112.so
+vendor/lib/libIMGegl_SGX544_112.so
+vendor/lib/libpvr2d_SGX544_112.so
+vendor/lib/libpvrANDROID_WSEGL_SGX544_112.so
+vendor/lib/libPVRScopeServices_SGX544_112.so
+vendor/lib/libsrv_init_SGX544_112.so
+vendor/lib/libsrv_um_SGX544_112.so
+vendor/lib/libusc_SGX544_112.so
+
