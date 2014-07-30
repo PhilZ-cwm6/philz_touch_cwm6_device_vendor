@@ -331,4 +331,5 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4339
 # Recovery Options
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.forbid_format=/persist,/firmware,/boot,/sbl1,/tz,/rpm,/sdi,/aboot,/imgdata \
-    ro.cwm.forbid_mount=/persist,/firmware
+    ro.cwm.forbid_mount=/persist,/firmware \
+    ro.cwm.backup_partitions=/efs1,/efs2

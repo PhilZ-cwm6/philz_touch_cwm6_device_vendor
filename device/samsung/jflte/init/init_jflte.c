@@ -58,6 +58,7 @@ void vendor_load_properties()
         property_set("ro.build.description", "jfltevl-user 4.2.2 JDQ39 I337MVLUAMDJ release-keys");
         property_set("ro.product.model", "SGH-I337M");
         property_set("ro.product.device", "jfltecan");
+        property_set("ro.loki_disabled", "1");
     } else if (strstr(bootloader, "I337")) {
         /* jflteatt */
         gsm_properties();
@@ -74,6 +75,7 @@ void vendor_load_properties()
         property_set("ro.product.device", "jfltecri");
         property_set("ro.cdma.home.operator.alpha", "Cricket");
         property_set("ro.cdma.home.operator.numeric", "310090");
+        property_set("ro.loki_disabled", "1");
     } else if (strstr(bootloader, "R970X")) {
         /* jfltecsp */
         cdma_properties("0");
@@ -82,6 +84,7 @@ void vendor_load_properties()
         property_set("ro.product.model", "SCH-R970X");
         property_set("ro.product.device", "jfltecsp");
         property_set("telephony.sms.pseudo_multipart", "1");
+        property_set("ro.loki_disabled", "1");
     } else if (strstr(bootloader, "L720")) {
         /* jfltespr */
         cdma_properties("1");
@@ -90,6 +93,7 @@ void vendor_load_properties()
         property_set("ro.product.model", "SPH-L720");
         property_set("ro.product.device", "jfltespr");
         property_set("telephony.sms.pseudo_multipart", "1");
+        property_set("ro.loki_disabled", "1");
     } else if (strstr(bootloader, "M919")) {
         /* jfltetmo */
         gsm_properties();
@@ -97,6 +101,7 @@ void vendor_load_properties()
         property_set("ro.build.description", "jfltetmo-user 4.3 JSS15J M919UVUEMK2 release-keys");
         property_set("ro.product.model", "SGH-M919");
         property_set("ro.product.device", "jfltetmo");
+        property_set("ro.loki_disabled", "1");
     } else if (strstr(bootloader, "R970")) {
         /* jflteusc */
         cdma_properties("0");
@@ -107,6 +112,7 @@ void vendor_load_properties()
         property_set("ro.cdma.home.operator.alpha", "U.S.Cellular");
         property_set("ro.cdma.home.operator.numeric", "311580");
         property_set("telephony.sms.pseudo_multipart", "1");
+        property_set("ro.loki_disabled", "1");
     } else if (strstr(bootloader, "I545")) {
         /* jfltevzw */
         cdma_properties("0");
@@ -123,6 +129,7 @@ void vendor_load_properties()
         property_set("ro.build.description", "jgedlteue-user 4.4.3 KTU84L.S003 140503 release-keys");
         property_set("ro.product.model", "GT-I9505G");
         property_set("ro.product.device", "jgedlte");
+        property_set("ro.loki_disabled", "1");
     } else if (strstr(bootloader, "I9505")) {
         /* jfltexx */
         gsm_properties();
@@ -130,6 +137,7 @@ void vendor_load_properties()
         property_set("ro.build.description", "jfltexx-user 4.2.2 JDQ39 I9505XXUAMDE release-keys");
         property_set("ro.product.model", "GT-I9505");
         property_set("ro.product.device", "jfltexx");
+        property_set("ro.loki_disabled", "1");
     } else if (strstr(bootloader, "I9507")) {
         /* jftddxx */
         gsm_properties();
@@ -137,6 +145,7 @@ void vendor_load_properties()
         property_set("ro.build.description", "jftddxx-user 4.3 JSS15J I9507XXUENB5 release-keys");
         property_set("ro.product.model", "GT-I9507");
         property_set("ro.product.device", "jftddxx");
+        property_set("ro.loki_disabled", "1");
     } else if (strstr(bootloader, "I9508")) {
         /* jfltezm */
         gsm_properties();
@@ -144,6 +153,7 @@ void vendor_load_properties()
         property_set("ro.build.description", "jfltezm-user 4.2.2 JDQ39 I9508ZMUAMG1 release-keys");
         property_set("ro.product.model", "GT-I9508");
         property_set("ro.product.device", "jfltezm");
+        property_set("ro.loki_disabled", "1");
     }
     property_get("ro.product.device", device);
     ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader, device);

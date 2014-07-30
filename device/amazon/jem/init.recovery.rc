@@ -98,6 +98,12 @@ service vold /sbin/minivold
     socket vold stream 0660 root mount
     ioprio be 2
 
+# recovery lock
+on property:sys.usb.recovery_lock=1
+    write /sys/class/android_usb/android0/enable 0
+on property:sys.usb.recovery_lock=0
+    write /sys/class/android_usb/android0/enable 1
+
 # Always start adbd on userdebug and eng builds
 on property:ro.debuggable=1
     #write /sys/class/android_usb/android0/enable 1
