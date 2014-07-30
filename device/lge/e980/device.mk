@@ -66,16 +66,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # This hw ships locked, work around it with loki
 PRODUCT_PACKAGES += \
 	loki.sh \
-	loki_patch \
-	loki_flash
+	loki_tool_static_gproj \
+	recovery-transform.sh
 
 PRODUCT_COPT_FILES += \
 	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.default_network=9 \
-	telephony.lteOnGsmDevice=1 \
-	ro.loki_enabled=1
+	telephony.lteOnGsmDevice=1
 
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)

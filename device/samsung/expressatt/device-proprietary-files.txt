@@ -4,6 +4,8 @@ lib/libaudioalsa.so
 lib/libcsd-client.so
 
 # Radio
+lib/libril-qc-qmi-1.so
+lib/libril.so
 bin/netmgrd
 bin/sec-ril
 bin/qmiproxy

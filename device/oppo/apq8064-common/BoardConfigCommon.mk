@@ -14,7 +14,8 @@
 # limitations under the License.
 #
 
-BOARD_VENDOR := oppo
+# inherit from Oppo common
+-include device/oppo/common/BoardConfigCommon.mk
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
@@ -62,6 +63,7 @@ BOARD_USES_LEGACY_ALSA_AUDIO := true
 BOARD_USES_FLUENCE_FOR_VOIP := true
 BOARD_USES_FLUENCE_INCALL := true
 BOARD_USES_SEPERATED_AUDIO_INPUT := true
+BOARD_USES_SEPERATED_HEADSET_MIC := true
 BOARD_USES_SEPERATED_VOICE_SPEAKER := true
 TARGET_USES_QCOM_COMPRESSED_AUDIO := true
 
@@ -71,9 +73,6 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
-
-# CM Hardware
-BOARD_HARDWARE_CLASS += device/oppo/apq8064-common/cmhw
 
 # Graphics
 BOARD_EGL_CFG := device/oppo/apq8064-common/configs/egl.cfg
@@ -88,10 +87,6 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# Power
-TARGET_USES_CM_POWERHAL := true
-TARGET_POWERHAL_NO_TOUCH_BOOST := true
-
 # Radio
 BOARD_PROVIDES_LIBRIL := true
 TARGET_ADDITIONAL_BOOTCLASSPATH := qcnvitems:qcrilhook
@@ -103,13 +98,16 @@ TARGET_FORCE_CPU_UPLOAD := true
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
 BOARD_WLAN_DEVICE                := qcwcn
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_qcwcn
+TARGET_USES_WCNSS_CTRL           := true
+TARGET_USES_QCOM_WCNSS_QMI       := true
+TARGET_WCNSS_MAC_PREFIX          := e8bba8
 WIFI_DRIVER_FW_PATH_STA          := "sta"
 WIFI_DRIVER_FW_PATH_AP           := "ap"
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
 
 # File system
 TARGET_USERIMAGES_USE_EXT4 := true

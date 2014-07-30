@@ -1,5 +1,5 @@
 #
-# Copyright 2012 The Android Open Source Project
+# Copyright 2014 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,44 +14,10 @@
 # limitations under the License.
 #
 
-import init.device.rc
-import init.sony.usb.rc
-
-on early-init
-    mount debugfs debugfs /sys/kernel/debug
-    symlink /data/tombstones /tombstones
-
-on init
-    chmod 0701 /mnt/media_rw
-    mkdir /storage 0775 system system
-    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
-    mkdir /storage/sdcard0 0775 system system
-    mkdir /storage/sdcard1 0775 system system
-    mkdir /storage/usbdisk 0775 system system
-
-    export EXTERNAL_STORAGE /storage/sdcard0
-    export SECONDARY_STORAGE /storage/sdcard1
-
-    # for backwards compatibility
-    symlink /storage/sdcard0 /sdcard
-    symlink /storage/sdcard0 /mnt/sdcard
-    symlink /storage/sdcard1 /ext_card
-    symlink /storage/sdcard1 /mnt/ext_card
-    symlink /storage/usbdisk /usbdisk
-    symlink /storage/usbdisk /mnt/usbdisk
-
-    symlink /dev/socket /tmp
+import init.sony.rc
 
 on fs
     mount_all ./fstab.qcom
-
-    chmod 0775 /data/etc
-    start tad
-    exec /system/bin/wait4tad
-    exec /system/bin/taimport
-    start ta_qmi_service
 
     restorecon /data/etc/bluetooth_bdaddr
     restorecon /data/etc/wlan_macaddr0
@@ -62,41 +28,9 @@ on fs
     restorecon /data/misc/audio/wcd9310_anc.bin
 
 on early-boot
-    # set RLIMIT_MEMLOCK to 64MB
-    setrlimit 8 67108864 67108864
-
-    # Permissions for AKM897x sensor
-    chown system system /data/misc/akm_set.txt
-    chown system system /sys/class/compass/akm8972/interval
-    chown system system /sys/class/compass/akm8972/single
-    chown system system /sys/class/compass/akm8972/registers
-
-    #Run pre_hw_config.sh before entering charge only mode.
-    exec /system/bin/sh /system/etc/pre_hw_config.sh
-
-    # Start the offline charging (This blocks booting further in some cases)
-    exec /system/bin/chargemon
-
-    # Touch firmware update
-    exec /system/bin/sh /system/etc/clearpad_fwloader.sh
+    exec /system/bin/sh /init.qcom.early_boot.sh ${ro.board.platform}
 
 on boot
-    exec /system/bin/btnvtool -O
-    chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
-    chown bluetooth bluetooth /proc/bluetooth/sleep/proto
-    chown system system /sys/module/sco/parameters/disable_esco
-    chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
-    chmod 0660 /sys/module/bluetooth_power/parameters/power
-    chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
-    chmod 0660 /sys/class/rfkill/rfkill0/state
-    chmod 0660 /proc/bluetooth/sleep/proto
-    chown bluetooth bluetooth /dev/ttyHS0
-    chmod 0660 /dev/ttyHS0
-    chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
-    chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
-
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
@@ -107,21 +41,8 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
-    # Allow QMUX daemon to assign port open wait time
-    chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
-
-    setprop ro.telephony.call_ring.multiple false
-
     #Remove SUID bit for iproute2 ip tool
     chmod 0755 /system/bin/ip
-
-    #port-bridge
-    chmod 0660 /dev/smd0
-    chown system system /dev/smd0
-
-    #BT DUN port-bridge
-    chmod 0660 /dev/smd7
-    chown bluetooth bluetooth /dev/smd7
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
@@ -147,56 +68,6 @@ on boot
     chmod 660 /dev/rtc0
     chown system system /dev/rtc0
 
-    chown root system /proc/net/ip_conntrack
-
-    # Owner for the proximity sensor
-    chown system system /sys/devices/i2c-12/12-0054/threshold
-    chown system system /sys/devices/i2c-12/12-0054/nburst
-
-    # LM35xx/cameralight
-    chown system system /sys/devices/i2c-10/10-0053/torch_enable
-    chmod 666 /sys/devices/i2c-10/10-0053/torch_enable
-    chown system system /sys/devices/i2c-10/10-0053/torch_current
-    chmod 666 /sys/devices/i2c-10/10-0053/torch_current
-    chown system camera /sys/devices/i2c-10/10-0053/privacy_enable
-    chown system camera /sys/devices/i2c-10/10-0053/privacy_current
-    chown system camera /sys/devices/i2c-10/10-0053/flash_enable
-    chown system camera /sys/devices/i2c-10/10-0053/flash_duration
-    chown system camera /sys/devices/i2c-10/10-0053/flash_synchronization
-    chown system camera /sys/devices/i2c-10/10-0053/flash_current
-    chown system camera /sys/devices/i2c-10/10-0053/status
-
-    # Panel backlight
-    chown system system /sys/class/leds/lcd-backlight_1/brightness
-    chmod 660 /sys/class/leds/lcd-backlight_1/brightness
-    chown system system /sys/class/leds/lcd-backlight_2/brightness
-    chmod 660 /sys/class/leds/lcd-backlight_2/brightness
-
-    # AS3676/Ambient Light Sensor
-    chown system system /sys/devices/i2c-10/10-0040/als_on
-    chmod 660 /sys/devices/i2c-10/10-0040/als_on
-
-    # Enable DEBUG_SUSPEND, DEBUG_EXIT_SUSPEND, and DEBUG_WAKEUP
-    write /sys/module/wakelock/parameters/debug_mask 7
-
-    #To allow interfaces to get v6 address when tethering is enabled
-    write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
-
 # msm specific files that need to be created on /data
 on post-fs-data
     # Create the directories used by the Wireless subsystem
@@ -220,8 +91,9 @@ on post-fs-data
 
     write /dev/wcnss_wlan 1
     write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
-    write /sys/module/subsystem_restart/parameters/max_restarts 8
-    write /sys/module/subsystem_restart/parameters/max_history_time 1000
+
+    # Create /data/time folder for time-services
+    mkdir /data/time/ 0700 system system
 
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
@@ -253,8 +125,13 @@ on post-fs-data
     #Create directories for gpsone_daemon services
     mkdir /data/misc/gpsone_d 0770 system gps
 
-    #Provide the access to hostapd.conf only to root and group
-    chmod 0660 /data/hostapd/hostapd.conf
+    #Create directories for QuIPS
+    mkdir /data/misc/quipc 0770 gps system
+
+    #Create directories for Location services
+    mkdir /data/misc/location 0770 gps gps
+    mkdir /data/misc/location/mq 0770 gps gps
+    mkdir /data/misc/location/xtwifi 0770 gps gps
 
     # Enable the setgid bit on the directory
     mkdir /data/audio 0770 media audio
@@ -290,57 +167,8 @@ on post-fs-data
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
 
-on charger
-    # Enable Power modes and set the CPU Freq Sampling rates
-    write /sys/module/rpm_resources/enable_low_power/L2_cache 1
-    write /sys/module/rpm_resources/enable_low_power/pxo 1
-    write /sys/module/rpm_resources/enable_low_power/vdd_dig 1
-    write /sys/module/rpm_resources/enable_low_power/vdd_mem 1
-    write /sys/module/pm_8x60/modes/cpu0/power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu1/power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "powersave"
-    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
-    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
-    write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
-    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 4
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
-
-service fuse_sdcard0 /system/bin/sdcard -u 2800 -g 2800 -w 2800 /mnt/media_rw/sdcard0 /storage/sdcard0
-    class late_start
-    disabled
-
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-    disabled
-
-service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk /storage/usbdisk
-    class late_start
-    disabled
-
-
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
-
-service rmt_storage /system/bin/rmt_storage
-    class core
-    user root
-
-# Fast Dormancy
-service fast-dormancy /system/bin/fast-dormancy
-    class late_start
-    disabled
-
-on property:ro.semc.enable.fast_dormancy=false
-    stop fast-dormancy
-
-# Update WIFI MAC address
-service mac-update /system/bin/mac-update
-    class main
-    user wifi
-    oneshot
 
 service hciattach /system/bin/sh /system/etc/init.sony.bt.sh
     class late_start
@@ -361,50 +189,9 @@ service qmuxd /system/bin/qmuxd
     user radio
     group radio audio bluetooth gps qcom_diag
 
-service tad /system/bin/tad /dev/block/mmcblk0 1,16
-    class core
-    user root
-    group root
-    socket tad stream 0660 system system
-    disabled
-
-service secchand /system/bin/secchand
-    class core
-    group root
-    user root
-
-service netmgrd /system/bin/netmgrd
-    class main
-
-service qrngd /system/bin/qrngd -f
-    class main
-    user root
-    group root
-
-service qseecomd /system/bin/qseecomd
-    class core
-    user system
-    group system
-
-# Trim Area QMI service
-service ta_qmi_service /system/bin/ta_qmi_service
-    user root
-    disabled
-
-service updatemiscta /system/bin/updatemiscta
-    class main
-    user root
-    oneshot
-
-service hw_config /system/bin/sh /system/etc/hw_config.sh
-    class main
-    user root
-    oneshot
-
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
-    -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets \
+    -O/data/misc/wifi/sockets -I/system/etc/wifi/wpa_supplicant_overlay.conf \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
@@ -415,14 +202,12 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-
 service p2p_supplicant /system/bin/wpa_supplicant \
     -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
     -I/system/etc/wifi/p2p_supplicant_overlay.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
-    -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 \
-    -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
+    -O/data/misc/wifi/sockets -I/system/etc/wifi/wpa_supplicant_overlay.conf \
+    -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1 -g@android:wpa_wlan0
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
 #   user wifi
@@ -460,44 +245,9 @@ on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  1
 
-service thermald /system/bin/thermald -c /system/etc/thermald.conf
-    class main
-    socket thermald stream 0666 root root
-    user root
-    disabled
-
-service system_monitor /system/bin/system_monitor
-    socket sysmon stream 0660 root system
-    class core
-    user root
-
-service dis_msm_therm /system/bin/sh /system/etc/disable_msm_thermal.sh
-    class core
-    user root
-    oneshot
-
-service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
-    class main
-
-service qcamerasvr /system/bin/mm-qcamera-daemon
-    class late_start
-    user camera
-    group camera system inet input
-
-# bugreport is triggered by holding down volume down, volume up and power
-service bugreport /system/bin/dumpstate -d -p -B \
-    -o /data/data/com.android.shell/files/bugreports/bugreport
-    class main
-    disabled
-    oneshot
-    keycodes 114 115 116
-
 service diag_mdlog /system/bin/logwrapper /system/bin/diag_mdlog -s 100
     class late_start
     disabled
-
-# on property:gsm.sim.state=READY
-#    start diag_mdlog
 
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     class late_start
@@ -506,11 +256,56 @@ service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     disabled
     oneshot
 
-service cnd /system/bin/cnd
+service qcom-sh /system/bin/sh /init.qcom.sh
     class late_start
-    socket cnd stream 660 root inet
+    user root
+    oneshot
 
-service illumination /system/bin/illumination_service
-    socket illumination stream 0660 root system
+# IRSC
+service irsc_util /system/bin/logwrapper /system/bin/irsc_util "/etc/sec_config"
     class main
     user root
+    oneshot
+
+# GPS
+service gpsone_daemon /system/bin/gpsone_daemon
+    class late_start
+    user gps
+    group gps qcom_oncrpc inet net_raw
+    disabled
+
+service quipc_igsn /system/bin/quipc_igsn
+    class late_start
+    user gps
+    group inet gps
+    disabled
+
+service quipc_main /system/bin/quipc_main
+    class late_start
+    user gps
+    group gps net_admin wifi inet
+    disabled
+
+service location_mq /system/bin/location-mq
+    class late_start
+    user gps
+    group gps
+    disabled
+
+service xtwifi_inet /system/bin/xtwifi-inet-agent
+    class late_start
+    user gps
+    group inet gps
+    disabled
+
+service xtwifi_client /system/bin/xtwifi-client
+    class late_start
+    user gps
+    group net_admin wifi inet gps
+    disabled
+
+service lowi-server /system/bin/lowi-server
+    class late_start
+    user gps
+    group gps net_admin wifi inet
+    disabled

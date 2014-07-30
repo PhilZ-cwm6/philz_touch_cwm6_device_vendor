@@ -922,9 +922,13 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera, int force)
 				if (rc < 0)
 					ALOGE("%s: Unable to set object y position", __func__);
 			}
-		}
 
-		focus_mode = FOCUS_MODE_TOUCH;
+			/* After taking a picture, focus-areas is reseted by stock camera app to the center of the screen */
+			if (! ( (focus_x == (preview_width / 2)) && (focus_y == (preview_height / 2)) )) {
+				//ALOGV("%s focus_mode changed to %d due to focus-areas='%s'", __func__, focus_mode, focus_areas_string);
+				focus_mode = FOCUS_MODE_TOUCH;
+			}
+		}
 
 	}
 
@@ -1082,9 +1086,11 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera, int force)
 			}
 		}
 
-		rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, focus_mode);
-		if (rc < 0)
-			ALOGE("%s: Unable to set focus mode", __func__);
+		if (focus_mode != exynos_camera->focus_mode || force) {
+			rc = exynos_v4l2_s_ctrl(exynos_camera, 0, V4L2_CID_CAMERA_FOCUS_MODE, focus_mode);
+			if (rc < 0)
+				ALOGE("%s: Unable to set focus mode", __func__);
+		}
 
 		exynos_camera->focus_mode = focus_mode;
 		sprintf(exynos_camera->raw_focus_mode, "%s", focus_mode_string);
@@ -2110,6 +2116,11 @@ int exynos_camera_capture_start(struct exynos_camera *exynos_camera)
 	goto complete;
 
 error:
+	if (exynos_camera->face_data != NULL && exynos_camera->face_data->release != NULL) {
+		exynos_camera->face_data->release(exynos_camera->face_data);
+		exynos_camera->face_data = NULL;
+	}
+
 	if (exynos_camera->capture_memory != NULL && exynos_camera->capture_memory->release != NULL) {
 		exynos_camera->capture_memory->release(exynos_camera->capture_memory);
 		exynos_camera->capture_memory = NULL;
@@ -2152,6 +2163,11 @@ void exynos_camera_capture_stop(struct exynos_camera *exynos_camera)
 	rc = exynos_v4l2_streamoff_cap(exynos_camera, 0);
 	if (rc < 0) {
 		ALOGE("%s: Unable to stop stream", __func__);
+	}
+
+	if (exynos_camera->face_data != NULL && exynos_camera->face_data->release != NULL) {
+		exynos_camera->face_data->release(exynos_camera->face_data);
+		exynos_camera->face_data = NULL;
 	}
 
 	if (exynos_camera->capture_memory != NULL && exynos_camera->capture_memory->release != NULL) {
@@ -3798,6 +3814,7 @@ complete:
 
 void exynos_camera_recording_thread_stop(struct exynos_camera *exynos_camera)
 {
+	camera_memory_t *memory;
 	int i;
 
 	if (exynos_camera == NULL)
@@ -3809,6 +3826,8 @@ void exynos_camera_recording_thread_stop(struct exynos_camera *exynos_camera)
 		ALOGE("Recording thread was already stopped!");
 		return;
 	}
+
+	memory = exynos_camera->recording_memory;
 
 	if (exynos_camera->recording_listener != NULL) {
 		exynos_camera_capture_listener_unregister(exynos_camera, exynos_camera->recording_listener);
@@ -3837,6 +3856,11 @@ void exynos_camera_recording_thread_stop(struct exynos_camera *exynos_camera)
 
 	pthread_mutex_destroy(&exynos_camera->recording_mutex);
 	pthread_mutex_destroy(&exynos_camera->recording_lock_mutex);
+
+	if (memory != NULL && memory->release != NULL) {
+		memory->release(memory);
+		exynos_camera->recording_memory = NULL;
+	}
 }
 
 // Auto-focus

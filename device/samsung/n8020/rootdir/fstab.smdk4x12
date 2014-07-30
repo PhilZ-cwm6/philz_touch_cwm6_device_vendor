@@ -19,4 +19,4 @@
 /dev/block/mmcblk0p8                            /boot                   emmc        defaults    recoveryonly
 /dev/block/mmcblk0p9                            /recovery               emmc        defaults    recoveryonly
 /dev/block/mmcblk0p7                            /modem                  emmc        defaults    recoveryonly
-#/dev/block/mmcblk1p1                            /external_sd            auto        defaults    recoveryonly
+/dev/block/mmcblk1p1                            /external_sd            auto        defaults    recoveryonly

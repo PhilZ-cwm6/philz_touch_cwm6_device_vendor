@@ -43,7 +43,7 @@ LOCAL_FORCE_STATIC_EXECUTABLE := true
 LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT_SBIN)
 LOCAL_UNSTRIPPED_PATH := $(TARGET_ROOT_OUT_SBIN_UNSTRIPPED)
 LOCAL_ADDITIONAL_DEPENDENCIES := charger_res_images_oppo
-LOCAL_C_INCLUDES := bootable/recovery
+LOCAL_C_INCLUDES := $(call include-path-for, recovery)
 
 LOCAL_STATIC_LIBRARIES := libminui libpixelflinger_static libpng
 LOCAL_STATIC_LIBRARIES += libsuspend

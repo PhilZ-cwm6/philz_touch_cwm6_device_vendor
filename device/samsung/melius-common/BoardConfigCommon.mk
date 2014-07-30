@@ -25,11 +25,8 @@
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/melius-common/include
 
-# For backwards compatibility with camera blobs
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
-
 # Kernel
-BOARD_KERNEL_CMDLINE         := console=null androidboot.hardware=qcom androidboot.selinux=permissive user_debug=31
+BOARD_KERNEL_CMDLINE         := console=null androidboot.hardware=qcom androidboot.selinux=permissive user_debug=31 zcache
 BOARD_KERNEL_BASE            := 0x80200000
 BOARD_MKBOOTIMG_ARGS         := --ramdisk_offset 0x02000000
 BOARD_KERNEL_PAGESIZE        := 2048
@@ -39,12 +36,19 @@ TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 
+# Krait optimizations
+TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
+TARGET_USE_KRAIT_PLD_SET := true
+TARGET_KRAIT_BIONIC_PLDOFFS := 10
+TARGET_KRAIT_BIONIC_PLDTHRESH := 10
+TARGET_KRAIT_BIONIC_BBTHRESH := 64
+TARGET_KRAIT_BIONIC_PLDSIZE := 64
+
 # Recovery
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/melius-common/recovery/recovery_keys.c
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 TARGET_RECOVERY_FSTAB := device/samsung/melius-common/rootdir/fstab.qcom
-TARGET_RECOVERY_INITRC := device/samsung/melius-common/rootdir/init.recovery.rc
+TARGET_RECOVERY_INITRC := device/samsung/melius-common/rootdir/init.rc
 TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/lcd/panel/panel/brightness\"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
@@ -77,23 +81,33 @@ BOARD_HAVE_DOCK_USBAUDIO := true
 # Allow suspend in charge mode
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
-# TWRP specific build flags
-BOARD_USE_CUSTOM_RECOVERY_FONT:= \"roboto_15x24.h\"
+# Camera
+COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
+TARGET_NEED_CAMERA_ZSL := true
+TARGET_NEED_FFC_PICTURE_FIXUP := true
+TARGET_NEED_DISABLE_FACE_DETECTION := true
+TARGET_NEED_DISABLE_FACE_DETECTION_BOTH_CAMERAS := true
+
+# We have new GPS
+BOARD_HAVE_NEW_QC_GPS := true
+
+# Time services
+BOARD_USES_QC_TIME_SERVICES := true
+
+# PowerHAL
+TARGET_POWERHAL_VARIANT := qcom
+
+#TWRP
 DEVICE_RESOLUTION := 720x1280
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
-TW_HAS_DOWNLOAD_MODE := false
-TW_NO_USB_STORAGE := true
-TWRP_EVENT_LOGGING := false
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
-# dual storage definition
 TW_INTERNAL_STORAGE_PATH := "/data/media/0"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-
-#TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/virtual/android_usb/android0/f_mass_storage/lun0/file
+TW_NO_REBOOT_BOOTLOADER := true
+TW_HAS_DOWNLOAD_MODE := true
+BOARD_HAS_NO_REAL_SDCARD := true
 TW_INCLUDE_FUSE_EXFAT := true
 
 # Enable SELinux (> Android 4.3)
@@ -103,7 +117,6 @@ HAVE_SELINUX := true
 TW_BRIGHTNESS_PATH := "/sys/devices/platform/mipi_novatek_nt35596.2049/lcd/panel/panel/brightness"
 TW_MAX_BRIGHTNESS := 255
 
-#TARGET_USERIMAGES_USE_EXT4 := true # already defined in cm
 TW_INCLUDE_FB2PNG := true
 
 # Prevent greyish screen after screen timeout

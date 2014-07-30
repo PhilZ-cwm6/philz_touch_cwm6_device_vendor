@@ -14,8 +14,9 @@
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
+TARGET_PROVIDES_ADRENO_DRIVER := true
 # qcom common
-$(call inherit-product, device/sony/qcom-common/qcom-common-42.mk)
+$(call inherit-product, device/sony/qcom-common/qcom-common.mk)
 
 COMMON_PATH := device/sony/blue-common
 
@@ -42,25 +43,22 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/init.qcom.early_boot.sh:root/init.qcom.early_boot.sh \
+    $(COMMON_PATH)/rootdir/init.qcom.sh:root/init.qcom.sh \
     $(COMMON_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
+    $(COMMON_PATH)/rootdir/init.sony.rc:root/init.sony.rc \
     $(COMMON_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
     $(COMMON_PATH)/rootdir/fstab.qcom:recovery/root/fstab.qcom \
     $(COMMON_PATH)/rootdir/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
     $(COMMON_PATH)/rootdir/system/etc/init.sony.bt.sh:system/etc/init.sony.bt.sh \
     $(COMMON_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc
 
-# Key and touchscreen files
+# Additional sbin stuff
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/sbin/wait4tad_static:root/sbin/wait4tad_static \
+    $(LOCAL_PATH)/rootdir/sbin/tad_static:root/sbin/tad_static
 
-# hayabusa has its own screen calibration file and needs an extra keylayout file
-ifeq ($(TARGET_DEVICE),hayabusa)
-    PRODUCT_COPY_FILES += \
-        $(COMMON_PATH)/rootdir/system/usr/idc/clearpad.idc:system/usr/idc/clearpad.idc \
-        $(COMMON_PATH)/rootdir/system/usr/keylayout/simple_remote_appkey.kl:system/usr/keylayout/simple_remote_appkey.kl
-else
-    PRODUCT_COPY_FILES += \
-        $(COMMON_PATH)/rootdir/system/usr/idc/sensor00_f11_sensor0.idc:system/usr/idc/sensor00_f11_sensor0.idc
-endif
-
+# Keys
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/system/usr/keylayout/msm8960-snd-card_Button_Jack.kl:system/usr/keylayout/msm8960-snd-card_Button_Jack.kl \
     $(COMMON_PATH)/rootdir/system/usr/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
@@ -100,6 +98,18 @@ PRODUCT_COPY_FILES += \
 # Post recovery script
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh
+
+# QCOM Xtras
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/system/etc/izat.conf:system/etc/izat.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/lowi.conf:system/etc/lowi.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/quipc.conf:system/etc/quipc.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/sap.conf:system/etc/sap.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/xtwifi.conf:system/etc/xtwifi.conf
+
+# SEC Config
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/system/etc/sec_config:system/etc/sec_config
 
 # Thermal monitor configuration
 PRODUCT_COPY_FILES += \
@@ -163,6 +173,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     sensors.msm8960
 
+# Wifi service
+PRODUCT_PACKAGES += \
+    wcnss_service
+
 # WLAN
 PRODUCT_PACKAGES += \
     libwfcu \
@@ -208,6 +222,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.fluencetype=none \
     lpa.decode=true
 
+# QCOM Location
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qc.sdk.izat.premium_enabled=0 \
+    ro.qc.sdk.izat.service_mask=0x4 \
+    persist.gps.qc_nlp_in_use=0 \
+    ro.gps.agps_provider=1 \
+    ro.service.swiqi2.supported=true \
+    persist.service.swiqi2.enable=1
+
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.bt.hci_transport=smd
@@ -219,6 +242,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Ril sends only one RIL_UNSOL_CALL_RING, so set call_ring.multiple to false
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.call_ring.multiple=0
+
+# OpenGL ES 2.0
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=131072
 
 # Include non-opensource parts
 $(call inherit-product, vendor/sony/blue-common/blue-common-vendor.mk)

@@ -4,48 +4,53 @@ VENDOR=sony
 
 BASE=../../../vendor/$VENDOR/$DEVICE/proprietary
 
-while getopts ":nh" options
+while getopts ":nhd:" options
 do
   case $options in
     n ) NC=1 ;;
+    d ) LDIR=$OPTARG ;;
     h ) echo "Usage: `basename $0` [OPTIONS] "
         echo "  -n  No clenup"
+        echo "  -d  Fetch blob from filesystem"
         echo "  -h  Show this help"
         exit ;;
     * ) ;;
   esac
 done
 
-if [ "x$NC" != "x1" ]
-then
+if [ "x$NC" != "x1" ]; then
   rm -rf $BASE/*
 fi
 
-for FILE in `cat ../$DEVICE/proprietary-files.txt | grep -v ^# | grep -v ^$`
+for FILE in `grep -v ^# ../$DEVICE/proprietary-files.txt | grep -v ^$ | sort`
 do
-  if [[ "$FILE" =~ ^obj:* ]]
-  then
-     FILE=`echo ${FILE##obj:}`
-  fi
-
   # Split the file from the destination (format is "file[:destination]")
   OLDIFS=$IFS IFS=":" PARSING_ARRAY=($FILE) IFS=$OLDIFS
   FILE=${PARSING_ARRAY[0]}
   DEST=${PARSING_ARRAY[1]}
-  if [ -z $DEST ]
-  then
+  if [[ "$FILE" =~ ^-.* ]]; then
+    FILE=`echo $FILE | sed s/^-//`
+  fi
+  if [ -z "$DEST" ]; then
     DEST=$FILE
   fi
-  DIR=`dirname $FILE`
-  if [ ! -d $BASE/$DIR ]
-  then
+  DIR=`dirname $DEST`
+  if [ ! -d $BASE/$DIR ]; then
     mkdir -p $BASE/$DIR
   fi
-  adb pull /system/$FILE $BASE/$DEST
+
+  if [ -z $LDIR ]; then
+    adb pull /system/$FILE $BASE/$DEST
+  else
+    cp $LDIR/system/$FILE $BASE/$DEST
+  fi
   # if file dot not exist try destination
-  if [ "$?" != "0" ]
-  then
-    adb pull /system/$DEST $BASE/$DEST
+  if [ "$?" != "0" ]; then
+    if [ -z $LDIR ]; then
+      adb pull /system/$DEST $BASE/$DEST
+    else
+      cp $LDIR/system/$DEST $BASE/$DEST
+    fi
   fi
 done
 

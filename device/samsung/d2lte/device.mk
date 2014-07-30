@@ -22,6 +22,11 @@ $(call inherit-product-if-exists, vendor/samsung/d2lte/d2lte-vendor.mk)
 ## overlays
 DEVICE_PACKAGE_OVERLAYS += device/samsung/d2lte/overlay
 
+## Common overlays for the non-d2s
+ifneq ($(filter cm_apexqtmo cm_expressatt,$(TARGET_PRODUCT)),)
+DEVICE_PACKAGE_OVERLAYS += device/samsung/d2lte/apexq-common/overlay
+endif
+
 # Boot animation and screen size
 
 ifeq ($(filter cm_apexqtmo cm_expressatt,$(TARGET_PRODUCT)),)
@@ -123,6 +128,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     persist.radio.apm_sim_not_pwdn=1 \
     ro.ril.transmitpower=true \
+    debug.composition.type=dyn \
     ro.opengles.version=131072 \
     persist.audio.vr.enable=false \
     persist.audio.speaker.location=high \
@@ -133,9 +139,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data_netmgrd_nint=16 \
     lpa.decode=true \
     rild.libpath=/system/lib/libril-qc-qmi-1.so \
-    ril.subscription.types=NV,RUIM \
-    ro.ril.svdo=true \
-    ro.cdma.subscribe_on_ruim_ready=true \
     persist.radio.no_wait_for_card=0 \
     keyguard.no_require_sim=true \
     media.aac_51_output_enabled=true \

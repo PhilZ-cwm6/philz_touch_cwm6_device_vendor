@@ -25,7 +25,7 @@ TARGET_NO_RADIOIMAGE := true
 
 TARGET_BOARD_OMAP_CPU := 4470
 TARGET_BOOTLOADER_BOARD_NAME := piranha
-TARGET_BOARD_INFO_FILE ?= device/samsung/superior/board-info.txt
+TARGET_BOARD_INFO_FILE := device/samsung/superior/board-info.txt
 
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_BASE := 0x80000000
@@ -129,7 +129,7 @@ COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/superior/recovery/recovery_keys.c
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := device/samsung/superior/recovery/recovery_keys.c
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/f_mass_storage/lun0/file"
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true

@@ -33,6 +33,7 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc
 
 # Recovery
+COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 PRODUCT_PACKAGES += \
     lpm.rc \
     charger \
@@ -48,9 +49,6 @@ PRODUCT_PACKAGES += \
     battery_4.png \
     battery_fail.png \
     battery_full.png
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/extra.fstab:recovery/root/etc/extra.fstab
 
 # QC thermald config
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
@@ -82,8 +80,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/dsp/soundimage/srs_global.cfg:system/etc/soundimage/srs_global.cfg
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/AudioBTID.csv:system/etc/AudioBTID.csv \
-    $(LOCAL_PATH)/configs/AudioBTIDnew.csv:system/etc/AudioBTIDnew.csvs \
     $(LOCAL_PATH)/dsp/snd_soc_msm/snd_soc_msm_2x_Fusion3:system/etc/snd_soc_msm/snd_soc_msm_2x_Fusion3
 
 # Media
@@ -116,6 +112,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
+
+# Keystore
+PRODUCT_PACKAGES += \
+    keystore.msm8960
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -170,6 +170,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.cam.hw.version=m7 \
     ro.cwm.forbid_format="/firmware/mdm,/firmware/q6" \
     ro.cwm.forbid_mount="/firmware/mdm,/firmware/q6" \
+    ro.input.noresample=1 \
     ro.opengles.version=196608 \
     ro.telephony.call_ring.multiple=false \
     ro.telephony.call_ring.delay=3000 \
@@ -189,4 +190,4 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalv
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Include non-opensource parts
-$(call inherit-product, vendor/htc/m7-common/m7-common-vendor.mk)
+$(call inherit-product-if-exists, vendor/htc/m7-common/m7-common-vendor.mk)

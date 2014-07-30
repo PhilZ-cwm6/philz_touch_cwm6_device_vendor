@@ -21,11 +21,6 @@ DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 PRODUCT_PACKAGES += \
     camera.msm8960
 
-# Charger
-PRODUCT_PACKAGES += \
-    charger_res_images \
-    charger
-
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/atmel_mxt_ts.kl:system/usr/keylayout/atmel_mxt_ts.kl \

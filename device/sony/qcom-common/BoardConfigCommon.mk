@@ -23,8 +23,8 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_SMP := true
 
-# Use the CM PowerHAL
-TARGET_USES_CM_POWERHAL := true
+# Power HAL
+TARGET_POWERHAL_VARIANT := cm
 CM_POWERHAL_EXTENSION := qcom
 
 # Lights HAL
@@ -44,10 +44,9 @@ endif
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
-BOARD_RIL_NO_CELLINFOLIST := true
 BOARD_USES_QCOM_RIL_RESPONSE_5_ELEMENTS := true
 
-# Bluetoth
+# Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 
 # Webkit

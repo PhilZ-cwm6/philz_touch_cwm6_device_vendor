@@ -6,8 +6,8 @@
 /dev/block/mmcblk0p13    /system             ext4      ro                                                        wait
 /dev/block/mmcblk0p3     /efs                ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic    wait,check
 /dev/block/mmcblk0p12    /cache              ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic    wait,check
-#/dev/block/mmcblk0p11    /tombstones         ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic    wait,check
-#/dev/block/mmcblk0p10    /firmware           vfat      ro,shortname=lower,fmask=0133,dmask=0022,context=u:object_r:radio_efs_file:s0  wait
+/dev/block/mmcblk0p11    /tombstones         ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic    wait,check
+/dev/block/mmcblk0p10    /firmware           vfat      ro,shortname=lower,fmask=0133,dmask=0022,context=u:object_r:radio_efs_file:s0  wait
 /dev/block/mmcblk0p16    /data               ext4      noatime,nosuid,nodev,discard,noauto_da_alloc,journal_async_commit,errors=panic    wait,check,encryptable=footer
 
 # vold-managed volumes ("block device" is actually a sysfs devpath)
@@ -18,3 +18,4 @@
 /dev/block/mmcblk0p8                            /boot                   emmc        defaults    recoveryonly
 /dev/block/mmcblk0p9                            /recovery               emmc        defaults    recoveryonly
 /dev/block/mmcblk0p10                           /modem                  emmc        defaults    recoveryonly
+/dev/block/mmcblk1p1                            /external_sd            auto        defaults    recoveryonly

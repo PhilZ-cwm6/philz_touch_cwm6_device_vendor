@@ -146,8 +146,8 @@ struct exynos_camera_preset exynos_camera_presets_smdk4x12[] = {
 			.preview_size = "640x480",
 			.preview_format_values = "yuv420sp,yuv420p",
 			.preview_format = "yuv420sp",
-			.preview_frame_rate_values = "25,15",
-			.preview_frame_rate = 25,
+			.preview_frame_rate_values = "30,15",
+			.preview_frame_rate = 30,
 			.preview_fps_range_values = "(15000,30000)",
 			.preview_fps_range = "15000,30000",
 
@@ -165,7 +165,7 @@ struct exynos_camera_preset exynos_camera_presets_smdk4x12[] = {
 			.full_video_snap_supported = 0,
 
 			.recording_size = "640x480",
-			.recording_size_values = "640x480",
+			.recording_size_values = "720x480,640x480",
 			.recording_format = "yuv420sp",
 
 			.focus_mode = "fixed",

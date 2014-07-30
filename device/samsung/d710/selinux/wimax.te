@@ -1,2 +1,0 @@
-# Allow /dev/swmxctl & /dev/uwibro access
-allow system wimax_device:chr_file { ioctl open read write };

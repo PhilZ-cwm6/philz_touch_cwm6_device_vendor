@@ -23,5 +23,5 @@ $(call inherit-product, device/oppo/find5/find5.mk)
 PRODUCT_NAME := full_find5
 PRODUCT_DEVICE := find5
 PRODUCT_BRAND := OPPO
-PRODUCT_MANUFACTURER := Oppo
+PRODUCT_MANUFACTURER := OPPO
 PRODUCT_MODEL := Find 5

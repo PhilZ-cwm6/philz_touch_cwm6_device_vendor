@@ -79,7 +79,9 @@ COMMON_GLOBAL_CFLAGS += -DUSE_CONVERT_WITH_ROTATE
 # Graphics
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
+BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
+BOARD_USE_BGRA_8888 := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
 
 # Media
@@ -122,6 +124,19 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.universal5410
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_RECOVERY_SWIPE := true
+
+# SELinux
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/i9500/sepolicy
+
+BOARD_SEPOLICY_UNION := \
+    file_contexts \
+    device.te \
+    domain.te \
+    gpsd.te \
+    mediaserver.te \
+    surfaceflinger.te \
+    system.te
 
 # Charging mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging

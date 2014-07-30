@@ -14,7 +14,7 @@ lib/libcsd-client.so
 
 # Thermal
 bin/thermald
-lib/libthermalclient.so
+vendor/lib/libthermalclient.so
 
 # GPS
 -app/com.qualcomm.location.apk
@@ -96,17 +96,15 @@ vendor/lib/libqmi_common_so.so
 vendor/lib/libqmi_encdec.so
 
 # Radio
-app/OppoNvProcess.apk
-app/OppoRadioShutdown.apk
-app/qcrilmsgtunnel.apk
-bin/bridgemgrd
+-app/OppoNvProcess.apk
+-app/OppoRadioShutdown.apk
+-app/qcrilmsgtunnel.apk
 bin/efsks
 bin/ks
 bin/netmgrd
 bin/nv_tee
 bin/qcks
 bin/qmuxd
-bin/rmt_storage
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
 framework/qcnvitems.jar
@@ -152,6 +150,9 @@ lib/libmm-abl-oem.so
 # Time services
 bin/time_daemon
 -lib/libtime_genoff.so
+
+# QuickBoot
+-app/QuickBoot.apk
 
 # Keystore
 vendor/firmware/keymaster/keymaster.b00

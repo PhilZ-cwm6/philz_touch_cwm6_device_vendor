@@ -19,5 +19,13 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="flashDevice">/sys/devices/virtual/camera/rear/rear_flash</string>
+
+    <!-- Low setting -->
+    <integer name="valueLow">1</integer>
+    <!-- Middle setting -->
+    <integer name="valueHigh">2</integer>
+
+    <!-- If the device does not support high brightness mode, disable this -->
+    <bool name="hasHighBrightness">true</bool>
 </resources>
 

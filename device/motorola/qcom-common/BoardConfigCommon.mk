@@ -91,9 +91,6 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
 
-# GPS
-BOARD_HAVE_NEW_QC_GPS := true
-
 # Audio
 BOARD_USES_ALSA_AUDIO := true
 BOARD_USES_FLUENCE_INCALL := true
@@ -108,8 +105,8 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 #camera abi compatiblily
 TARGET_DISPLAY_INSECURE_MM_HEAP := true
 
-# Power
-TARGET_USES_CM_POWERHAL := true
+# Use CM PowerHAL by default if not definied elsewhere
+TARGET_POWERHAL_VARIANT ?= cm
 
 # Number of supplementary service groups allowed by init
 TARGET_NR_SVC_SUPP_GIDS := 28
@@ -165,6 +162,7 @@ BOARD_SEPOLICY_UNION += \
 	radio.te \
 	rild.te \
 	rmt.te \
+	sdcard_internal.te \
 	sdcardd.te \
 	sensors.te \
 	shell.te \
@@ -177,3 +175,9 @@ BOARD_SEPOLICY_UNION += \
 	vold.te \
 	wpa_supplicant.te \
 	zygote.te
+
+ifneq ($(TARGET_BUILD_VARIANT),user)
+	BOARD_SEPOLICY_UNION += su.te
+endif
+
+PRODUCT_BOOT_JARS := $(subst $(space),:,$(PRODUCT_BOOT_JARS))

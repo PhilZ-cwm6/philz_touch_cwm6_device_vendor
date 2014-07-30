@@ -24,9 +24,9 @@ lib/libimage-jpeg-enc-omx-comp.so
 lib/libimage-omx-common.so
 lib/libaudioalsa.so
 lib/libaudioparsers.so
-lib/libcsd-client.so
 lib/hw/camera.vendor.msm8960.so
 lib/hw/sensors.msm8960.so
+lib/libbtnv.so
 lib/libmmjpeg.so
 lib/liboemcamera.so
 vendor/firmware/libpn544_fw.so

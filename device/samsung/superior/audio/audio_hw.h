@@ -104,6 +104,12 @@ enum tty_modes {
     TTY_MODE_FULL
 };
 
+struct mixer_ctls
+{
+    struct mixer_ctl *mixinl_in1l_volume;
+    struct mixer_ctl *mixinl_in2l_volume;
+};
+
 struct route_setting
 {
     char *ctl_name;

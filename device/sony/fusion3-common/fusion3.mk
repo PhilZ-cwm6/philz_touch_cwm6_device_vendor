@@ -14,6 +14,7 @@
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
+TARGET_PROVIDES_ADRENO_DRIVER := true
 # qcom common
 $(call inherit-product, device/sony/qcom-common/qcom-common.mk)
 
@@ -197,6 +198,21 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.bt.hci_transport=smd
+
+# Touchscreen
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.input.noresample=1
+
+# IR-blaster Support
+ifeq ($(BOARD_HAVE_IR_BLASTER),true)
+PRODUCT_PACKAGES += \
+    IRRemote \
+    libjni_sonyopenir
+endif
+
+# OpenGL ES 3.0
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=196608
 
 # Include non-opensource parts
 $(call inherit-product, vendor/sony/fusion3-common/fusion3-common-vendor.mk)

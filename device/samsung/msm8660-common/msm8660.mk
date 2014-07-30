@@ -16,6 +16,7 @@
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
@@ -46,11 +47,13 @@ PRODUCT_PACKAGES += \
 
 # HALs
 PRODUCT_PACKAGES += \
+    camera.msm8660 \
     copybit.msm8660 \
     gralloc.msm8660 \
     hwcomposer.msm8660 \
     lights.msm8660 \
     gps.msm8660 \
+    memtrack.msm8660 \
     power.msm8660
 
 # Audio
@@ -160,7 +163,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/system/lib/libqc-opt.so \
     debug.mdpcomp.maxlayer=3 \
     debug.hwc.dynThreshold=1.9 \
-    lpa.decode=true
+    lpa.decode=false
 
 # Common overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/msm8660-common/overlay

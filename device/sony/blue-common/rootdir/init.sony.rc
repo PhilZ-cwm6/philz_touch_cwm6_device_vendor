@@ -1,0 +1,266 @@
+#
+# Copyright 2012 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+import init.device.rc
+import init.sony.usb.rc
+
+on early-init
+    mount debugfs debugfs /sys/kernel/debug
+    symlink /data/tombstones /tombstones
+
+on init
+    chmod 0701 /mnt/media_rw
+    mkdir /storage 0775 system system
+    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    mkdir /storage/sdcard0 0775 system system
+    mkdir /storage/sdcard1 0775 system system
+    mkdir /storage/usbdisk 0775 system system
+
+    export EXTERNAL_STORAGE /storage/sdcard0
+    export SECONDARY_STORAGE /storage/sdcard1
+
+    # for backwards compatibility
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
+    symlink /storage/sdcard1 /ext_card
+    symlink /storage/sdcard1 /mnt/ext_card
+    symlink /storage/usbdisk /usbdisk
+    symlink /storage/usbdisk /mnt/usbdisk
+
+    symlink /dev/socket /tmp
+
+on fs
+    chmod 0775 /data/etc
+
+    # SONY: Start the TrimArea Daemon. It must be started before fota-ua
+    class_start trimarea
+    exec /sbin/wait4tad_static
+
+    # SONY: Start early TA-users
+    exec /system/bin/taimport
+    start ta_qmi_service
+
+on early-boot
+    # set RLIMIT_MEMLOCK to 64MB
+    setrlimit 8 67108864 67108864
+
+    # Permissions for AKM897x sensor
+    chown system system /data/misc/akm_set.txt
+    chown system system /sys/class/compass/akm8972/interval
+    chown system system /sys/class/compass/akm8972/single
+    chown system system /sys/class/compass/akm8972/registers
+
+    #Run pre_hw_config.sh before entering charge only mode.
+    exec /system/bin/sh /system/etc/pre_hw_config.sh
+
+    # Start the offline charging (This blocks booting further in some cases)
+    exec /system/bin/chargemon
+
+    # Touch firmware update
+    exec /system/bin/sh /system/etc/clearpad_fwloader.sh
+
+on boot
+    exec /system/bin/btnvtool -O
+    chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /proc/bluetooth/sleep/proto
+    chown system system /sys/module/sco/parameters/disable_esco
+    chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
+    chmod 0660 /sys/module/bluetooth_power/parameters/power
+    chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chmod 0660 /proc/bluetooth/sleep/proto
+    chown bluetooth bluetooth /dev/ttyHS0
+    chmod 0660 /dev/ttyHS0
+    chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
+    chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
+
+    setprop ro.telephony.call_ring.multiple false
+
+    # Owner for the proximity sensor
+    chown system system /sys/devices/i2c-12/12-0054/threshold
+    chown system system /sys/devices/i2c-12/12-0054/nburst
+
+    # LM35xx/cameralight
+    chown system system /sys/devices/i2c-10/10-0053/torch_enable
+    chmod 666 /sys/devices/i2c-10/10-0053/torch_enable
+    chown system system /sys/devices/i2c-10/10-0053/torch_current
+    chmod 666 /sys/devices/i2c-10/10-0053/torch_current
+    chown system camera /sys/devices/i2c-10/10-0053/privacy_enable
+    chown system camera /sys/devices/i2c-10/10-0053/privacy_current
+    chown system camera /sys/devices/i2c-10/10-0053/flash_enable
+    chown system camera /sys/devices/i2c-10/10-0053/flash_duration
+    chown system camera /sys/devices/i2c-10/10-0053/flash_synchronization
+    chown system camera /sys/devices/i2c-10/10-0053/flash_current
+    chown system camera /sys/devices/i2c-10/10-0053/status
+
+    # Panel backlight
+    chown system system /sys/class/leds/lcd-backlight_1/brightness
+    chmod 660 /sys/class/leds/lcd-backlight_1/brightness
+    chown system system /sys/class/leds/lcd-backlight_2/brightness
+    chmod 660 /sys/class/leds/lcd-backlight_2/brightness
+
+    # AS3676/Ambient Light Sensor
+    chown system system /sys/devices/i2c-10/10-0040/als_on
+    chmod 660 /sys/devices/i2c-10/10-0040/als_on
+
+    #To allow interfaces to get v6 address when tethering is enabled
+    write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet1/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet2/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet3/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet4/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio0/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio1/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio2/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio3/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio4/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
+
+on charger
+    # Enable Power modes and set the CPU Freq Sampling rates
+    write /sys/module/rpm_resources/enable_low_power/L2_cache 1
+    write /sys/module/rpm_resources/enable_low_power/pxo 1
+    write /sys/module/rpm_resources/enable_low_power/vdd_dig 1
+    write /sys/module/rpm_resources/enable_low_power/vdd_mem 1
+    write /sys/module/pm_8x60/modes/cpu0/power_collapse/suspend_enabled 1
+    write /sys/module/pm_8x60/modes/cpu1/power_collapse/suspend_enabled 1
+    write /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
+    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
+    write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
+    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 4
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
+
+service fuse_sdcard0 /system/bin/sdcard -u 2800 -g 2800 -w 2800 /mnt/media_rw/sdcard0 /storage/sdcard0
+    class late_start
+    disabled
+
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled
+
+service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk /storage/usbdisk
+    class late_start
+    disabled
+
+service rmt_storage /system/bin/rmt_storage
+    class core
+    user root
+
+# Update WIFI MAC address
+service mac-update /system/bin/mac-update
+    class main
+    user wifi
+    oneshot
+
+# Sony: TrimArea Daemon
+# last 2 args: start block(blk size 128k), number of blocks(partitionsize(kb) /128(kb))
+service tad_static /sbin/tad_static /dev/block/mmcblk0 1,16
+    user root
+    group root
+    socket tad stream 0660 system system
+    class trimarea
+
+service secchand /system/bin/secchand
+    class core
+    group root
+    user root
+
+service netmgrd /system/bin/netmgrd
+    class main
+
+service qrngd /system/bin/qrngd -f
+    class main
+    user root
+    group root
+
+service qseecomd /system/bin/qseecomd
+    class core
+    user system
+    group system
+
+# Trim Area QMI service
+service ta_qmi_service /system/bin/ta_qmi_service
+    user root
+    disabled
+
+service updatemiscta /system/bin/updatemiscta
+    class main
+    user root
+    oneshot
+
+service hw_config /system/bin/sh /system/etc/hw_config.sh
+    class main
+    user root
+    oneshot
+
+service system_monitor /system/bin/system_monitor
+    socket sysmon stream 0660 root system
+    class core
+    user root
+
+service dis_msm_therm /system/bin/sh /system/etc/disable_msm_thermal.sh
+    class core
+    user root
+    oneshot
+
+# bugreport is triggered by holding down volume down, volume up and power
+service bugreport /system/bin/dumpstate -d -p -B \
+    -o /data/data/com.android.shell/files/bugreports/bugreport
+    class main
+    disabled
+    oneshot
+    keycodes 114 115 116
+
+service cnd /system/bin/cnd
+    class late_start
+    socket cnd stream 660 root inet
+
+service illumination /system/bin/illumination_service
+    socket illumination stream 0660 root system
+    class main
+    user root
+
+# Time daemon
+service time_daemon /system/bin/time_daemon
+    class late_start
+    user root
+    group root
+
+# WCNSS WiFi Service
+service wcnss-service /system/bin/wcnss_service
+    class late_start
+    user system
+    group system wifi
+    oneshot
+
+# start GNSS/Sensor interface daemon
+service gsiff_daemon /system/bin/gsiff_daemon
+    class late_start
+    user system
+    group gps qcom_oncrpc net_raw

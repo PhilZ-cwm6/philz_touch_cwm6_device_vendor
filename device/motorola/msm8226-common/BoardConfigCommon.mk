@@ -41,10 +41,12 @@ BOARD_KERNEL_SEPARATED_DT := true
 BOARD_CUSTOM_BOOTIMG_MK := device/motorola/msm8226-common/mkbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/motorola/msm8226
 TARGET_KERNEL_CONFIG := msm8226_mmi_defconfig
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 vmalloc=400M utags.blkdev=/dev/block/platform/msm_sdcc.1/by-name/utags androidboot.write_protect=0 zcache androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 vmalloc=400M utags.blkdev=/dev/block/platform/msm_sdcc.1/by-name/utags androidboot.write_protect=0 zcache
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+
+BOARD_HAS_QCOM_WLAN_SDK :=
 
 WLAN_MODULES:
 	mkdir -p $(KERNEL_MODULES_OUT)/pronto
@@ -58,21 +60,32 @@ TARGET_USES_QCOM_BSP := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
 
 # Audio
-BOARD_USES_CUSTOM_AUDIO_PLATFORM_PATH := device/motorola/msm8226-common/audio
 AUDIO_FEATURE_DISABLED_FM :=
 AUDIO_FEATURE_DISABLED_SSR := true
 BOARD_HAVE_QCOM_FM := true
-AUDIO_FEATURE_DISABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_DISABLED_ANC_HEADSET := true
+AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP := true
+
+# GPS
+TARGET_NO_RPC := true
 
 # Graphics
 BOARD_EGL_CFG := $(LOCAL_PATH)/config/egl.cfg
 TARGET_DISPLAY_USE_RETIRE_FENCE :=
 TARGET_QCOM_DISPLAY_VARIANT := caf-new
 
+# Enables Adreno RS driver
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+
 TARGET_QCOM_MEDIA_VARIANT := caf-new
 
-# Use stock power hal
-TARGET_USES_CM_POWERHAL :=
+# Use qcom power hal
+TARGET_POWERHAL_VARIANT := qcom
+
+# Enable CPU boosting events in the power HAL
+TARGET_USES_CPU_BOOST_HINT := true
+
+TARGET_HW_DISK_ENCRYPTION := true
 
 # Hardware tunables framework
 BOARD_HARDWARE_CLASS := device/motorola/msm8226-common/cmhw/

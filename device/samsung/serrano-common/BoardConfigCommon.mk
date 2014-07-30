@@ -25,26 +25,26 @@
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/serrano-common/include
 
-# For backwards compatibility with camera blobs
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
-
 # Kernel
 BOARD_KERNEL_CMDLINE         := androidboot.hardware=qcom androidboot.selinux=permissive user_debug=31 zcache
 BOARD_KERNEL_BASE            := 0x80200000
 BOARD_MKBOOTIMG_ARGS         := --ramdisk_offset 0x02000000
 BOARD_KERNEL_PAGESIZE        := 2048
 TARGET_KERNEL_SOURCE         := kernel/samsung/msm8930-common
+ifneq ($(filter serranoltespr,$(TARGET_DEVICE)),)
+TARGET_KERNEL_CONFIG         := cyanogen_serrano_usa_defconfig
+else
 TARGET_KERNEL_CONFIG         := cyanogen_serrano_defconfig
+endif
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 
 # Recovery
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/serrano-common/recovery/recovery_keys.c
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 TARGET_RECOVERY_FSTAB := device/samsung/serrano-common/rootdir/fstab.qcom
-# TARGET_RECOVERY_INITRC := device/samsung/serrano-common/rootdir/init.recovery.rc
+TARGET_RECOVERY_INITRC := device/samsung/serrano-common/rootdir/init.recovery.rc
 TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/lcd/panel/backlight\"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
@@ -82,11 +82,17 @@ QCOM_FM_ENABLED := true
 BOARD_USES_SEPERATED_FM := true
 
 # Camera
+COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 TARGET_NEED_CAMERA_ZSL := true
 TARGET_NEED_FFC_PICTURE_FIXUP := true
+TARGET_NEED_DISABLE_FACE_DETECTION := true
+TARGET_NEED_DISABLE_FACE_DETECTION_BOTH_CAMERAS := true
 
 # We have new GPS
 BOARD_HAVE_NEW_QC_GPS := true
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
+
+# Build our own PowerHAL
+TARGET_POWERHAL_VARIANT :=

@@ -32,6 +32,7 @@ system/lib/hw/sensors.omap4.so
 system/lib/libexif.so
 system/lib/libexifa.so
 system/lib/libjpega.so
+system/lib/libmedia_jni.so
 system/lib/libmedia_native.so
 system/lib/libsecjpeginterface.so
 system/lib/libseccameracore.so

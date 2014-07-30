@@ -28,10 +28,4 @@
     <bool name="config_wifiApFirmwareReload">false</bool>
 
     <integer name="config_keyboardBrightnessSettingDefault">1</integer>
-
-    <!-- If this is true, the screen will fade off. -->
-    <bool name="config_animateScreenLights">false</bool>
-    <!-- True will enable the screen-off animation. -->
-    <bool name="config_screenOffAnimation">false</bool>
-
 </resources>

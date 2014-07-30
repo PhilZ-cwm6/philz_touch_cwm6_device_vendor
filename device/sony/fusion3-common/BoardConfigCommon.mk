@@ -30,9 +30,6 @@ BOARD_VENDOR_PLATFORM := fusion3
 
 BOARD_LIB_DUMPSTATE := libdumpstate.sony
 
-# Architecture
-TARGET_ARCH_VARIANT_CPU := cortex-a9
-
 # Flags
 TARGET_GLOBAL_CFLAGS += -mfpu=neon-vfpv4 -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon-vfpv4 -mfloat-abi=softfp
@@ -113,6 +110,9 @@ TARGET_QCOM_MEDIA_VARIANT := caf
 BOARD_USES_ALSA_AUDIO := true
 BOARD_USES_LEGACY_ALSA_AUDIO := true
 TARGET_USES_QCOM_COMPRESSED_AUDIO := true
+
+# RIL
+BOARD_RIL_NO_CELLINFOLIST := true
 
 # QCOM enhanced A/V
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true

@@ -31,6 +31,10 @@ ifeq ($(TARGET_NEED_SAMSUNG_CAMERA_MODE),true)
     LOCAL_CFLAGS += -DSAMSUNG_CAMERA_MODE
 endif
 
+ifeq ($(TARGET_ADD_ISO_MODE_50),true)
+    LOCAL_CFLAGS += -DISO_MODE_50
+endif
+
 ifeq ($(TARGET_ADD_ISO_MODE_1600),true)
     LOCAL_CFLAGS += -DISO_MODE_1600
 endif
@@ -39,6 +43,9 @@ ifeq ($(TARGET_ADD_ISO_MODE_HJR),true)
     LOCAL_CFLAGS += -DISO_MODE_HJR
 endif
 
+ifeq ($(TARGET_VIDEO_PREVIEW_ALWAYS_MAX),true)
+    LOCAL_CFLAGS += -DVIDEO_PREVIEW_ALWAYS_MAX
+endif
 LOCAL_SRC_FILES := \
     CameraWrapper.cpp
 

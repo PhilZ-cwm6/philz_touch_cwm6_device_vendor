@@ -1,4 +1,4 @@
-# Copyright (c) 2012, The Linux Foundation. All rights reserved.
+# Copyright (c) 2012, 2014, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -34,12 +34,12 @@ on early-init
     symlink /data/tombstones /tombstones
 
 on init
+    chmod 755 /gpecheck.sh
+    exec /gpecheck.sh
     # CM: We use our own ril-daemon service definition, see mmi-ril-daemon
     stop ril-daemon
 
 on fs
-    chmod 755 /gpecheck.sh
-    exec /gpecheck.sh
     mount_all fstab.qcom
 
     # Keeping following partitions outside fstab file. As user may not have
@@ -76,6 +76,10 @@ on boot
     # vibrator intensity
     chown system system /sys/devices/virtual/timed_output/vibrator/vtg_level
 
+    # display color calibration
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcal
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcal_ctrl
+
     # setup trace dir
     mkdir /cache/trace 0777 root shell
     chown root shell /cache/trace
@@ -101,7 +105,14 @@ service time_daemon /system/bin/time_daemon
 
 service mpdecision /system/bin/mpdecision --avg_comp
    user root
+   group root system
    disabled
+
+#start GNSS/Sensor interface daemon
+service gsiff_daemon /system/bin/gsiff_daemon
+   class late_start
+   user system
+   group gps net_raw
 
 service thermal-engine /system/bin/thermal-engine -c /etc/thermal-engine-8226.conf
    class main

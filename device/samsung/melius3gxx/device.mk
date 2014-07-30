@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,16 +13,13 @@
 # limitations under the License.
 #
 
-# Also get non-open-source specific aspects if available
-$(call inherit-product-if-exists, vendor/samsung/melius3gxx/melius3gxx-vendor.mk)
-
 # Inherit from melius-common
 $(call inherit-product, device/samsung/melius-common/melius-common.mk)
-$(call inherit-product, device/samsung/melius-common/nfc.mk)
-
-# Device overlay
-DEVICE_PACKAGE_OVERLAYS += device/samsung/melius3gxx/overlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
+
+# Ramdisk
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/init.carrier.rc:root/init.carrier.rc

@@ -15,7 +15,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Πληκτρολόγιο ApexQ</string>
   <string name="keyboard_layouts_label">Πληκτρολόγιο Relay</string>
   <string name="keypad_apexq_qwerty_label">ApexQ QWERTY</string>

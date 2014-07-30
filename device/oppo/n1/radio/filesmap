@@ -1,0 +1,2 @@
+emmc_appsboot.mbn /dev/block/platform/msm_sdcc.1/by-name/aboot df9cfcd7b990e0c71a82db23ac1622c6d7070db0
+
