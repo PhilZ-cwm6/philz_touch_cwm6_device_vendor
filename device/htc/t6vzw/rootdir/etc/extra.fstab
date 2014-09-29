@@ -1,0 +1,6 @@
+# add here entries already existing in main device fstab, but for which you want a blk_device2, fs_type2 or fs_options2
+# used to partition sdcard and format it to ext2/ext3
+# used also to stat for size of mtd/yaffs2 partitions
+
+/devices/platform/msm_sdcc.3/mmc_host   /storage/external_sd     auto default    voldmanaged=external_sd:auto
+/devices/platform/msm_hsusb_host	/storage/usbdisk	auto	defaults	voldmanaged=usbdisk:auto
