@@ -1,0 +1,38 @@
+# system.prop for t6vzw
+#
+
+# RIL - AOSP properties
+rild.libargs=-d /dev/smd0
+rild.libpath=/system/lib/libril-qc-qmi-1.so
+ro.telephony.default_cdma_sub=0
+ro.telephony.default_network=8
+ro.cdma.subscribe_on_ruim_ready=true
+telephony.lteOnCdmaDevice=1
+persist.radio.snapshot_enabled=1
+persist.radio.snapshot_timer=22
+ro.ril.oem.ecclist=911,*911,#911
+ro.ril.enable.a52=0
+ro.ril.enable.a53=1
+ro.ril.disable.fd.plmn.prefix=23402,23410,23411,23420
+ro.ril.enable.managed.roaming=1
+ro.ril.enable.sdr=0
+ro.ril.oem.show.act=0
+ro.ril.enable.gea3=1
+ro.ril.set.mtusize=1428
+ro.ril.vzw.feature=1
+ro.ril.wp.feature=1
+ro.cdma.data_retry_config=max_retries=infinite,0,0,60000,120000,480000,900000
+ro.gsm.data_retry_config=max_retries=infinite,0,0,60000,120000,480000,900000
+ro.gsm.2nd_data_retry_config=max_retries=infinite,0,0,60000,120000,480000,900000
+ro.config.svlte1x=true
+ro.ril.def.agps.mode=6
+
+# Carrier definitions
+ro.cdma.home.operator.numeric=311480
+ro.cdma.home.operator.alpha=Verizon
+gsm.sim.operator.alpha=Verizon
+gsm.sim.operator.numeric=311480
+gsm.sim.operator.iso-country=us
+gsm.operator.alpha=Verizon
+gsm.operator.numeric=311480
+gsm.operator.iso-country=us
